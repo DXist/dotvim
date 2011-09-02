@@ -1,0 +1,73 @@
+syntax on                           " syntax highlighing
+filetype on                          " try to detect filetypes
+filetype plugin indent on    " enable loading indent file for filetype
+"Подсвечиваем все что можно подсвечивать
+"let python_highlight_all = 1
+"Включаем 256 цветов в терминале, мы ведь работаем из иксов?
+"Нужно во многих терминалах, например в gnome-terminal
+set t_Co=256
+
+set mouse=a		" Enable mouse usage (all modes)
+" тёмный фон
+set bg=dark
+" для различения уровня отступов
+"set list lcs=tab:\|\
+set list listchars=tab:»·,trail:·
+" отсекаем пробелы на конце
+autocmd BufWritePre * :%s/\s\+$//e
+" удобно при наборе русских текстов
+set keymap=russian-jcukenwin
+"проблема с бэкслешем ,
+"set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\,,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>,./
+set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
+set iminsert=0
+set imsearch=0
+set pastetoggle=<F2>
+map <F5> :source ~/.vimrc
+" сворачивание
+set foldcolumn=3
+set fdm=indent
+set fdn=2
+set fml=7
+"ctags
+set tags=~/mytags
+
+set viminfo='100,<50,s10,h,%
+"Настройка omnicomletion для Python (а так же для js, html и css)
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+"Настройки табов для Python, согласно рекоммендациям
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab "Ставим табы пробелами
+set softtabstop=4 "4 пробела в табе
+"Автоотступ
+set autoindent
+
+" Showing red border at column 77 and 78
+set cc=79
+hi ColorColumn ctermbg=darkgrey guibg=darkgrey
+nmap <F3> <ESC>: source ~/.vimrc<CR>
+nmap <F4> <ESC>79\|gEl<INSERT><CR><ESC>
+" поиск текста
+nmap <leader>a <Esc>:Ack!
+
+map <leader>td <Plug>TaskList
+map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
+"Перемещения по окнам
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+map <leader>g :GundoToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+let g:pep8_map='<leader>8'
+let g:pyflakes_use_quickfix = 0
