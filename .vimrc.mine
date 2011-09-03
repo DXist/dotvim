@@ -1,4 +1,12 @@
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+set backup		" keep a backup file
+" сохраняем буферы между сессиями
+set viminfo+=%
+
 syntax on                           " syntax highlighing
+" подсветка найденных соответсвий
+set hlsearch
 filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
 "Подсвечиваем все что можно подсвечивать
@@ -10,6 +18,7 @@ set t_Co=256
 set mouse=a		" Enable mouse usage (all modes)
 " тёмный фон
 set bg=dark
+
 " для различения уровня отступов
 "set list lcs=tab:\|\
 set list listchars=tab:»·,trail:·
@@ -20,19 +29,19 @@ set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
 "set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\,,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>,./
 set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
+" по умолчанию - латинская раскладка
 set iminsert=0
+" по умолчанию - латинская раскладка при поиске
 set imsearch=0
-set pastetoggle=<F2>
-map <F5> :source ~/.vimrc
+
 " сворачивание
 set foldcolumn=3
 set fdm=indent
 set fdn=2
 set fml=7
 "ctags
-set tags=~/mytags
+set tags+=~/mytags
 
-set viminfo='100,<50,s10,h,%
 "Настройка omnicomletion для Python (а так же для js, html и css)
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -41,7 +50,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
-"Настройки табов для Python, согласно рекоммендациям
+"Настройки табов для Python, согласно рекомендациям
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -53,11 +62,14 @@ set autoindent
 " Showing red border at column 77 and 78
 set cc=79
 hi ColorColumn ctermbg=darkgrey guibg=darkgrey
-nmap <F3> <ESC>: source ~/.vimrc<CR>
+set pastetoggle=<F2>
 nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
+map <F5> <ESC>: source ~/.vimrc<CR>
+
 " поиск текста
 nmap <leader>a <Esc>:Ack!
 
+"список TODO-меток
 map <leader>td <Plug>TaskList
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 "Перемещения по окнам
@@ -69,5 +81,11 @@ map <leader>g :GundoToggle<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
+map <leader>p :TlistToggle<CR>
 let g:pep8_map='<leader>8'
-let g:pyflakes_use_quickfix = 0
+"let g:pyflakes_use_quickfix = 0
+"miniBuf
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
