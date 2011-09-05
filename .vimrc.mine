@@ -89,3 +89,24 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
+" Rope AutoComplete
+imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+"let ropevim_codeassist_maxfixes=10
+"let ropevim_guess_project=1
+let ropevim_vim_completion=1
+let ropevim_enable_autoimport=1
+let ropevim_extended_complete=1
+let ropevim_codeassist_maxfixes=10
+let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
+" Rope AutoImport and OrganizeImport
+nnoremap <leader>roi <ESC>:RopeOrganizeImports<CR>1<CR>
+nnoremap <leader>rai <ESC>:RopeAutoImport<CR>
+nmap <leader>rcp <ESC>:RopeCreatePackage<CR>
+nmap <leader>rcm <ESC>:RopeCreateModule<CR>
+
+" Rope AutoComplete
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback","django.*","lxml.etree","lxml.*"]
+imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+
