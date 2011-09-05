@@ -54,7 +54,7 @@ set autoindent
 set cc=79
 hi ColorColumn ctermbg=darkgrey guibg=darkgrey
 nmap <F3> <ESC>: source ~/.vimrc<CR>
-nmap <F4> <ESC>79\|gEl<INSERT><CR><ESC>
+nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 " поиск текста
 nmap <leader>a <Esc>:Ack!
 
