@@ -4,6 +4,7 @@ set backup		" keep a backup file
 " сохраняем буферы между сессиями
 set viminfo+=%
 
+set statusline=%<%f\ %y\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 syntax on                           " syntax highlighing
 " подсветка найденных соответсвий
 set hlsearch
