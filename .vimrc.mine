@@ -5,6 +5,8 @@ set backup		" keep a backup file
 set viminfo+=%
 
 set statusline=%<%f\ %y\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" статус - 2 строка снизу
+set laststatus=2
 syntax on                           " syntax highlighing
 " подсветка найденных соответсвий
 set hlsearch
