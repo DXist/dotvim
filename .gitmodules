@@ -55,3 +55,9 @@
 [submodule "bundle/pyflakes"]
 	path = bundle/pyflakes
 	url = https://github.com/mitechie/pyflakes-pathogen.git
+[submodule "bundle/acp"]
+	path = bundle/acp
+	url = https://github.com/clones/vim-autocomplpop.git
+[submodule "bundle/l9"]
+	path = bundle/l9
+	url = https://github.com/slack/vim-l9.git
