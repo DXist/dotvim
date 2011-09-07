@@ -1,2 +1,13 @@
 snippet cod
 	# -*- coding: utf-8 -*-
+
+snippet class
+	class ${1:ClassName}(${2:models.Model}):
+		u'''${3:docstring} для ${1}'''
+		${4}
+		def __unicode__(self):
+			return ${4:''}
+
+		class Meta:
+			verbose_name = u'${1}'
+			verbose_name_plural = u'${1}'

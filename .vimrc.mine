@@ -68,7 +68,7 @@ nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 map <F5> <ESC>: source ~/.vimrc<CR>
 
 " поиск текста
-nmap <leader>a <Esc>:Ack!
+nmap <leader>ac <Esc>:Ack!
 
 "список TODO-меток
 map <leader>td <Plug>TaskList
