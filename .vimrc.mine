@@ -1,6 +1,9 @@
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set backup		" keep a backup file
+" бэкапы и swap-файлы храним во временной директории
+set backupdir=~/.vim/tmp/,/tmp
+set directory=~/.vim/tmp/,/tmp
 " сохраняем буферы между сессиями
 set viminfo+=%
 
@@ -95,7 +98,7 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-map <leader>g :GundoToggle<CR>
+map <leader>u :GundoToggle<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
@@ -104,6 +107,10 @@ map <leader>p :TlistToggle<CR>
 map <leader>ms <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
 map <leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
 map <leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
+"git команды
+map <leader>gs :Gstatus<CR>
+map <leader>gc :Gcommit<CR>
+map <leader>gk :!gitk<CR>
 
 let g:pep8_map='<leader>8'
 "let g:pyflakes_use_quickfix = 0
