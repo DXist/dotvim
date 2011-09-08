@@ -68,8 +68,14 @@ set pastetoggle=<F2>
 nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 map <F5> <ESC>: source ~/.vimrc<CR>
 
+" поиск файлов в workspace
+let g:CommandTMaxHeight = 25
+let g:CommandTMatchWindowReverse = 1
+execute "nmap <leader><leader>t <ESC>:CommandT  ".workspace."<CR>"
 " поиск текста
-nmap <leader>ac <Esc>:Ack!
+nmap <leader>a <Esc>:Ack!
+" поиск текста в workspace
+execute "nmap <leader><leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
 
 "список TODO-меток
 map <leader>td <Plug>TaskList
@@ -84,6 +90,11 @@ map <leader>n :NERDTreeToggle<CR>
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
 map <leader>p :TlistToggle<CR>
+"django команды
+map <leader>ms <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
+map <leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
+map <leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
+
 let g:pep8_map='<leader>8'
 "let g:pyflakes_use_quickfix = 0
 "miniBuf
