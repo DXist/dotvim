@@ -11,19 +11,25 @@ set statusline=%<%f\ %y\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 " статус - 2 строка снизу
 set laststatus=2
 syntax on                           " syntax highlighing
+" тёмный фон
+set bg=dark
+colorscheme solarized
+let g:solarized_termtrans =1
+" переключение background
+call togglebg#map("<F6>")
 " подсветка найденных соответсвий
 set hlsearch
 filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
+
+" используем специальную палитру для solarized
+set t_Co=16
+"let g:solarized_termcolors=256
+
 "Подсвечиваем все что можно подсвечивать
-"let python_highlight_all = 1
-"Включаем 256 цветов в терминале, мы ведь работаем из иксов?
-"Нужно во многих терминалах, например в gnome-terminal
-set t_Co=256
+let python_highlight_all = 1
 
 set mouse=a		" Enable mouse usage (all modes)
-" тёмный фон
-set bg=dark
 
 " для различения уровня отступов
 "set list lcs=tab:\|\
@@ -75,14 +81,18 @@ set pastetoggle=<F2>
 nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 map <F5> <ESC>: source ~/.vimrc<CR>
 
-" поиск файлов в workspace
 let g:CommandTMaxHeight = 25
 let g:CommandTMatchWindowReverse = 1
-execute "nmap <leader><leader>t <ESC>:CommandT  ".workspace."<CR>"
+" поиск файлов в workspace
+if exists("workspace")
+	execute "nmap <leader><leader>t <ESC>:CommandT  ".workspace."<CR>"
+endif
 " поиск текста
 nmap <leader>a <Esc>:Ack!
 " поиск текста в workspace
-execute "nmap <leader><leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
+if exists("workspace")
+	execute "nmap <leader><leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
+endif
 
 " переход по тегу
 nmap <CR> g<C-]>

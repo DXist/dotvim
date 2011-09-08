@@ -61,3 +61,6 @@
 [submodule "bundle/l9"]
 	path = bundle/l9
 	url = https://github.com/slack/vim-l9.git
+[submodule "bundle/vim-colors-solarized"]
+	path = bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
