@@ -71,9 +71,6 @@ set softtabstop=4 "4 пробела в табе
 "Автоотступ
 set autoindent
 
-" Showing red border at column 77 and 78
-set cc=79
-hi ColorColumn ctermbg=darkgrey guibg=darkgrey
 set pastetoggle=<F2>
 nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 map <F5> <ESC>: source ~/.vimrc<CR>
