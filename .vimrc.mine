@@ -51,6 +51,13 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 let g:SuperTabDefaultCompletionType = "context"
+function! MyTagContext()
+    return "\<c-x>\<c-]>"
+  " no return will result in the evaluation of the next
+  " configured context
+endfunction
+let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+
 set completeopt=menuone,longest,preview
 
 set tabstop=4
