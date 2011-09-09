@@ -64,3 +64,6 @@
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/vim-javascript-indent"]
+	path = bundle/vim-javascript-indent
+	url = https://github.com/itspriddle/vim-javascript-indent.git
