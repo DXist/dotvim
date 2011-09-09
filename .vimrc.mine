@@ -116,7 +116,8 @@ map <leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
 map <leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
 "git команды
 map <leader>gs :Gstatus<CR>
-map <leader>gc :Gcommit<CR>
+map <leader>gc :Gcommit<space>
+map <leader>gp :Git push<CR>
 map <leader>gk :!gitk<CR>
 
 let g:pep8_map='<leader>8'
