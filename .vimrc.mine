@@ -79,7 +79,7 @@ set autoindent
 
 set pastetoggle=<F2>
 nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
-map <F5> <ESC>: source ~/.vimrc<CR>
+map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 
 let g:CommandTMaxHeight = 25
 let g:CommandTMatchWindowReverse = 1
