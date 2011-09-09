@@ -94,8 +94,8 @@ if exists("workspace")
 	execute "nmap <leader><leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
 endif
 
-" переход по тегу
-nmap <CR> g<C-]>
+" переход по тегу в стиле tjump
+nmap g] g<C-]>
 "список TODO-меток
 map <leader>td <Plug>TaskList
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
