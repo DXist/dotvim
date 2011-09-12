@@ -21,7 +21,6 @@ call togglebg#map("<F6>")
 set hlsearch
 filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
-
 " используем специальную палитру для solarized
 set t_Co=16
 "let g:solarized_termcolors=256
@@ -36,6 +35,8 @@ set mouse=a		" Enable mouse usage (all modes)
 set list listchars=tab:»·,trail:·
 " отсекаем пробелы на конце
 autocmd BufWritePre * :%s/\s\+$//e
+" автообновление настроек
+autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
 " удобно при наборе русских текстов
 set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
@@ -72,13 +73,12 @@ set completeopt=menuone,longest,preview
 set tabstop=4
 set shiftwidth=4
 set smarttab
-set noexpandtab "Ставим табы по умолчанию
 set softtabstop=4 "4 пробела в табе
 "Автоотступ
 set autoindent
 
 set pastetoggle=<F2>
-nmap <F4> <ESC>80\|gEl<INSERT><CR><ESC>
+map <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 
 let g:CommandTMaxHeight = 25
@@ -105,6 +105,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" нам нужно сохранить undo tree при переключении буферов
+set hidden
 map <leader>u :GundoToggle<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>j :RopeGotoDefinition<CR>
