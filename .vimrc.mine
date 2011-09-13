@@ -83,6 +83,7 @@ map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 
 let g:CommandTMaxHeight = 25
 let g:CommandTMatchWindowReverse = 1
+let g:CommandTMaxFiles = 50000
 " поиск файлов в workspace
 if exists("workspace")
 	execute "nmap <leader><leader>t <ESC>:CommandT  ".workspace."<CR>"
