@@ -1,15 +1,20 @@
+" GENERAL
+filetype on                          " try to detect filetypes
+filetype plugin indent on    " enable loading indent file for filetype
+" Fast editing of the .vimrc
+map <leader>e :e! ~/.vim/.vimrc.mine<cr>
+" автообновление настроек
+autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
+
+" VIM user interface
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set backup		" keep a backup file
-" бэкапы и swap-файлы храним во временной директории
-set backupdir=~/.vim/tmp/,/tmp
-set directory=~/.vim/tmp/,/tmp
-" сохраняем буферы между сессиями
-set viminfo+=%
-
 set statusline=%<%f\ %y\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 " статус - 2 строка снизу
 set laststatus=2
+set mouse=a		" Enable mouse usage (all modes)
+
+" COLORS
 syntax on                           " syntax highlighing
 " тёмный фон
 set bg=dark
@@ -19,8 +24,6 @@ let g:solarized_termtrans =1
 call togglebg#map("<F6>")
 " подсветка найденных соответсвий
 set hlsearch
-filetype on                          " try to detect filetypes
-filetype plugin indent on    " enable loading indent file for filetype
 " используем специальную палитру для solarized
 set t_Co=16
 "let g:solarized_termcolors=256
@@ -28,15 +31,24 @@ set t_Co=16
 "Подсвечиваем все что можно подсвечивать
 let python_highlight_all = 1
 
-set mouse=a		" Enable mouse usage (all modes)
+
+" FILES, BACKUPS, SAVING
+set backup		" keep a backup file
+" бэкапы и swap-файлы храним во временной директории
+set backupdir=~/.vim/tmp/,/tmp
+set directory=~/.vim/tmp/,/tmp
+" сохраняем буферы между сессиями
+set viminfo+=%
+" нам нужно сохранить undo tree при переключении буферов
+set hidden
+" отсекаем пробелы на конце при сохранении
+autocmd BufWritePre * :%s/\s\+$//e
+
 
 " для различения уровня отступов
-"set list lcs=tab:\|\
 set list listchars=tab:»·,trail:·
-" отсекаем пробелы на конце
-autocmd BufWritePre * :%s/\s\+$//e
-" автообновление настроек
-autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
+
+" LOCALIZATION
 " удобно при наборе русских текстов
 set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
@@ -47,7 +59,15 @@ set iminsert=0
 " по умолчанию - латинская раскладка при поиске
 set imsearch=0
 
-" сворачивание
+" TEXT EDITING
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4 "4 пробела в табе
+"Автоотступ
+set autoindent
+
+" FOLDING - сворачивание
 set foldcolumn=3
 set fdm=indent
 set fdn=2
@@ -57,9 +77,8 @@ set fml=7
 " screwing up folding when switching between windows.
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-"ctags
-set tags+=~/mytags
 
+" COMPLETION
 "Настройка omnicomletion для Python (а так же для js, html и css)
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -72,20 +91,16 @@ function! MyTagContext()
   " configured context
 endfunction
 let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
-
 set completeopt=menuone,longest,preview
 
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set softtabstop=4 "4 пробела в табе
-"Автоотступ
-set autoindent
-
+" MAPPINGS
 set pastetoggle=<F2>
+" Перенос строки без разбития слов
 map <F4> <ESC>80\|gEl<INSERT><CR><ESC>
+" Обновление .vimrc.mine
 map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 
+" CommandT
 let g:CommandTMaxHeight = 25
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTMaxFiles = 50000
@@ -93,6 +108,7 @@ let g:CommandTMaxFiles = 50000
 if exists("workspace")
 	execute "nmap <leader><leader>t <ESC>:CommandT  ".workspace."<CR>"
 endif
+
 " поиск текста
 nmap <leader>a <Esc>:Ack!
 if exists("workspace")
@@ -100,19 +116,28 @@ if exists("workspace")
 	execute "nmap <leader><leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
 endif
 
+"ctags
+set tags+=~/mytags
+
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
 "список TODO-меток
 map <leader>td <Plug>TaskList
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
+
+" WINDOWS
 "Перемещения по окнам
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+"miniBuf
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplUseSingleClick = 1
 
-" нам нужно сохранить undo tree при переключении буферов
-set hidden
 map <leader>u :GundoToggle<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>j :RopeGotoDefinition<CR>
@@ -130,11 +155,6 @@ map <leader>gk :!gitk<CR>
 
 let g:pep8_map='<leader>8'
 "let g:pyflakes_use_quickfix = 0
-"miniBuf
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
 " Rope AutoComplete
 imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "let ropevim_codeassist_maxfixes=10
