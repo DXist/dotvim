@@ -44,6 +44,9 @@ set hidden
 " отсекаем пробелы на конце при сохранении
 autocmd BufWritePre * :%s/\s\+$//e
 
+"DIFF
+set diffopt+=vertical
+
 
 " для различения уровня отступов
 set list listchars=tab:\ \ ,trail:·
