@@ -46,7 +46,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 
 " для различения уровня отступов
-set list listchars=tab:»·,trail:·
+set list listchars=tab:\ \ ,trail:·
+"set list listchars=tab:»·,trail:·
 
 " LOCALIZATION
 " удобно при наборе русских текстов
@@ -118,9 +119,9 @@ endif
 
 "ctags
 set tags+=~/mytags
-
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
+
 "список TODO-меток
 map <leader>td <Plug>TaskList
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
@@ -131,6 +132,8 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+" Переход между буферами
+nmap <space> <c-^>
 "miniBuf
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
