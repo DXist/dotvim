@@ -1,20 +1,48 @@
 " GENERAL {{{
+set nocompatible
 filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
 " enable modeline
 set modeline
 " автообновление настроек
 autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
+"}}}
 
-" VIM user interface
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-if exists("fugitive")
-	set statusline=%<%f\ %y\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" VIM user interface {{{
+" statusline
+set statusline=
+if exists("*GetCurrentProject")
+	set statusline+=Project:\ %{GetCurrentProject()}\ 
 endif
+
+if exists("*fugitive#statusline")
+	set statusline+=%{fugitive#statusline()}\ 
+endif
+
+set statusline+=%<%f\ %y\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
 " статус - 2 строка снизу
 set laststatus=2
-set mouse=a		" Enable mouse usage (all modes)
+
+" Enable mouse usage (all modes)
+set mouse=a
+" меняем заголовок окна на titlestring
+set title
+set cursorline
+" новое окно помещаем справа от текущего
+set splitright
+
+" SEARCH
+" игнорируем case, если шаблон в нижнем регистре
+set ignorecase
+set smartcase
+" ищем в процессе набора
+set incsearch
+" подсветка найденных соответствий
+set hlsearch
+
+set wildmenu wildmode=list:longest
+set wildignore=.o,.git,*.swp,*~
 "}}}
 
 " COLORS {{{
@@ -25,10 +53,8 @@ silent! colorscheme solarized
 let g:solarized_termtrans =1
 " переключение background
 if exists("togglebg")
-call togglebg#map("<F6>")
+	call togglebg#map("<F6>")
 endif
-" подсветка найденных соответствий
-set hlsearch
 " используем специальную палитру для solarized
 set t_Co=16
 "let g:solarized_termcolors=256
@@ -47,8 +73,8 @@ set directory=~/.vim/tmp/,/tmp
 set viminfo+=%
 " нам нужно сохранить undo tree при переключении буферов
 set hidden
-" отсекаем пробелы на конце при сохранении
-autocmd BufWritePre * :%s/\s\+$//e
+" отсекаем неэкранированные пробелы на конце при сохранении
+autocmd BufWritePre * :%s/\(\\\)\@<!\s\+$//e
 "}}}
 
 " LOCALIZATION {{{
@@ -64,6 +90,8 @@ set imsearch=0
 "}}}
 
 " TEXT EDITING {{{
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -109,6 +137,11 @@ set completeopt=menuone,longest,preview
 
 " MAPPINGS {{{
 " GENERAL {{{
+"Tab in visual mode
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" Paste mode
 set pastetoggle=<F2>
 " Перенос строки без разбития слов
 map <F4> <ESC>80\|gEl<INSERT><CR><ESC>
@@ -134,6 +167,10 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+imap <c-j> <ESC><c-w>j
+imap <c-k> <ESC><c-w>k
+imap <c-l> <ESC><c-w>l
+imap <c-h> <ESC><c-w>h
 " Переход между буферами
 nmap <space> <c-^>
 "}}}
@@ -146,6 +183,8 @@ map <Leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
 
 " Conque
 let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_CloseOnEnd = 1
 
 " CommandT
 let g:CommandTMaxHeight = 25
@@ -181,7 +220,7 @@ let g:miniBufExplUseSingleClick = 1
 
 " NERDTree
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
+"map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
 map <Leader>gs :Gstatus<CR>
@@ -208,6 +247,30 @@ nmap <Leader>rj :RopeGotoDefinition<CR>
 nmap <Leader>rr :RopeRename<CR>
 imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "}}}
+
+"light house
+autocmd VimEnter * call SwitchToProject()
+autocmd TabEnter * execute ":UMiniBufExplorer"
+"map <LEADER>W :TMiniBufExplorerCloseAllOthers<CR>
+map <Leader>n :call ToggleBetweenNERDTreeAndBufExplorer()<CR>
+"map <C-!> :call CloseNERDTreeAndBufExplorer()<CR>
+map gt :call GTTabMove('next')<CR>
+map gT :call GTTabMove('previous')<CR>
+function! GTTabMove(direction)
+  if IsBufExplorerOpen() && tabpagenr('$') == 1
+    if a:direction == 'next'
+      call NextBuffer()
+    else
+      call PreviousBuffer()
+    endif
+  elseif a:direction == 'next'
+    normal! gt
+  else
+    normal! gT
+  endif
+
+endfunction
+
 
 " VARIOUS {{{
 " PEP8
