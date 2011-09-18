@@ -1,8 +1,8 @@
-" GENERAL
+" GENERAL {{{
 filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
-" Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/.vimrc.mine<cr>
+" enable modeline
+set modeline
 " автообновление настроек
 autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
 
@@ -15,8 +15,9 @@ endif
 " статус - 2 строка снизу
 set laststatus=2
 set mouse=a		" Enable mouse usage (all modes)
+"}}}
 
-" COLORS
+" COLORS {{{
 syntax on                           " syntax highlighing
 " тёмный фон
 set bg=dark
@@ -24,7 +25,7 @@ silent! colorscheme solarized
 let g:solarized_termtrans =1
 " переключение background
 if exists("togglebg")
-	call togglebg#map("<F6>")
+call togglebg#map("<F6>")
 endif
 " подсветка найденных соответствий
 set hlsearch
@@ -34,12 +35,13 @@ set t_Co=16
 
 "Подсвечиваем все что можно подсвечивать
 let python_highlight_all = 1
+"}}}
 
-
-" FILES, BACKUPS, SAVING
-set backup		" keep a backup file
+" FILES, BACKUPS, SAVING {{{
+" keep a backup file
+set backup
 " бэкапы и swap-файлы храним во временной директории
-set backupdir=~/.vim/tmp/,/tmp
+set backupdir=~/.vim/backup/,/tmp
 set directory=~/.vim/tmp/,/tmp
 " сохраняем буферы между сессиями
 set viminfo+=%
@@ -47,16 +49,9 @@ set viminfo+=%
 set hidden
 " отсекаем пробелы на конце при сохранении
 autocmd BufWritePre * :%s/\s\+$//e
+"}}}
 
-"DIFF
-set diffopt+=vertical
-
-
-" для различения уровня отступов
-set list listchars=tab:\ \ ,trail:·
-"set list listchars=tab:»·,trail:·
-
-" LOCALIZATION
+" LOCALIZATION {{{
 " удобно при наборе русских текстов
 set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
@@ -66,8 +61,9 @@ set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,
 set iminsert=0
 " по умолчанию - латинская раскладка при поиске
 set imsearch=0
+"}}}
 
-" TEXT EDITING
+" TEXT EDITING {{{
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -75,7 +71,15 @@ set softtabstop=4 "4 пробела в табе
 "Автоотступ
 set autoindent
 
-" FOLDING - сворачивание
+"diff
+set diffopt+=vertical
+
+" для различения уровня отступов
+set list listchars=tab:\ \ ,trail:·
+"set list listchars=tab:»·,trail:·
+""}}}
+
+" FOLDING - сворачивание {{{
 set foldcolumn=3
 set fdm=indent
 set fdn=2
@@ -85,8 +89,9 @@ set fml=7
 " screwing up folding when switching between windows.
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+"}}}
 
-" COMPLETION
+" COMPLETION {{{
 "Настройка omnicomletion для Python (а так же для js, html и css)
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -94,46 +99,36 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 let g:SuperTabDefaultCompletionType = "context"
 function! MyTagContext()
-    return "\<c-x>\<c-]>"
-  " no return will result in the evaluation of the next
-  " configured context
+return "\<c-x>\<c-]>"
+" no return will result in the evaluation of the next
+" configured context
 endfunction
 let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 set completeopt=menuone,longest,preview
+"}}}
 
-" MAPPINGS
+" MAPPINGS {{{
+" GENERAL {{{
 set pastetoggle=<F2>
 " Перенос строки без разбития слов
 map <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 " Обновление .vimrc.mine
 map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
+" Fast editing of the .vimrc
+map <Leader>v :e! ~/.vim/.vimrc.mine<CR>
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" Opens a tab edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>t
+map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-" CommandT
-let g:CommandTMaxHeight = 25
-let g:CommandTMatchWindowReverse = 1
-let g:CommandTMaxFiles = 50000
-" поиск файлов в workspace
-if exists("workspace")
-	execute "nmap <leader><leader>t <ESC>:CommandT  ".workspace."<CR>"
-endif
+" Inserts the path of the currently edited file into a command
+" Command mode: Ctrl+P
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+"}}}
 
-" поиск текста
-nmap <leader>a <Esc>:Ack!
-if exists("workspace")
-	" поиск текста в workspace
-	execute "nmap <leader><leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
-endif
-
-"ctags
-set tags+=~/mytags
-" переход по тегу в стиле tjump
-nmap g] g<C-]>
-
-"список TODO-меток
-map <leader>td <Plug>TaskList
-map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
-
-" WINDOWS
+" WINDOWS {{{
 "Перемещения по окнам
 map <c-j> <c-w>j
 map <c-k> <c-w>k
@@ -141,30 +136,60 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 " Переход между буферами
 nmap <space> <c-^>
-"miniBuf
+"}}}
+
+" SHELL {{{
+map <Leader>ms <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
+map <Leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
+map <Leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
+"}}}
+
+" Conque
+let g:ConqueTerm_InsertOnEnter = 1
+
+" CommandT
+let g:CommandTMaxHeight = 25
+let g:CommandTMatchWindowReverse = 1
+let g:CommandTMaxFiles = 50000
+" поиск файлов в workspace
+if exists("workspace")
+	execute "nmap <Leader><Leader>t <ESC>:CommandT  ".workspace."<CR>"
+endif
+
+" Ack, поиск текста
+nmap <Leader>a <Esc>:Ack!
+if exists("workspace")
+	" поиск текста в workspace
+	execute "nmap <Leader><Leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
+endif
+
+" CTAGS
+set tags+=~/mytags
+" переход по тегу в стиле tjump
+nmap g] g<C-]>
+
+"список TODO-меток
+map <Leader>td <Plug>TaskList
+map <Leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
+
+" miniBufExpl
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 let g:miniBufExplUseSingleClick = 1
 
-map <leader>u :GundoToggle<CR>
-map <leader>n :NERDTreeToggle<CR>
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
-map <leader>p :TlistToggle<CR>
-"django команды
-map <leader>ms <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
-map <leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
-map <leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
-"git команды
-map <leader>gs :Gstatus<CR>
-map <leader>gc :Gcommit<space>
-map <leader>gp :Git push<CR>
-map <leader>gk :!gitk<CR>
+" NERDTree
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
 
-let g:pep8_map='<leader>8'
-"let g:pyflakes_use_quickfix = 0
+" fugitive, git команды
+map <Leader>gs :Gstatus<CR>
+map <Leader>gc :Gcommit<space>
+map <Leader>gp :Git push<CR>
+map <Leader>gk :!gitk<CR>
+
+" Ropevim {{{
 " Rope AutoComplete
 imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "let ropevim_codeassist_maxfixes=10
@@ -173,16 +198,23 @@ let ropevim_vim_completion=1
 let ropevim_enable_autoimport=1
 let ropevim_extended_complete=1
 let ropevim_codeassist_maxfixes=10
-let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
-" Rope AutoImport and OrganizeImport
-nnoremap <leader>roi <ESC>:RopeOrganizeImports<CR>1<CR>
-nnoremap <leader>rai <ESC>:RopeAutoImport<CR>
-nmap <leader>rcp <ESC>:RopeCreatePackage<CR>
-nmap <leader>rcm <ESC>:RopeCreateModule<CR>
+"let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
 
-" Rope AutoComplete
-let ropevim_vim_completion = 1
-let ropevim_extended_complete = 1
-let g:ropevim_autoimport_modules = ["os.*","traceback","django.*","lxml.etree","lxml.*"]
+nmap <Leader>roi <ESC>:RopeOrganizeImports<CR>1<CR>
+nmap <Leader>rai <ESC>:RopeAutoImport<CR>
+nmap <Leader>rcp <ESC>:RopeCreatePackage<CR>
+nmap <Leader>rcm <ESC>:RopeCreateModule<CR>
+nmap <Leader>rj :RopeGotoDefinition<CR>
+nmap <Leader>rr :RopeRename<CR>
 imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+"}}}
 
+" VARIOUS {{{
+" PEP8
+let g:pep8_map='<Leader>8'
+"let g:pyflakes_use_quickfix = 0
+map <Leader>u :GundoToggle<CR>
+map <Leader>p :TlistToggle<CR>
+"}}}
+"}}}
+" vim: set foldmethod=marker:
