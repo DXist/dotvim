@@ -240,13 +240,13 @@ imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "}}}
 
 "light house
-autocmd VimEnter * call SwitchToProject()
+"autocmd VimEnter * call SwitchToProject()
 autocmd TabEnter * execute ":UMiniBufExplorer"
 "map <LEADER>W :TMiniBufExplorerCloseAllOthers<CR>
 map <Leader>n :call ToggleBetweenNERDTreeAndBufExplorer()<CR>
 "map <C-!> :call CloseNERDTreeAndBufExplorer()<CR>
-map gt :call GTTabMove('next')<CR>
-map gT :call GTTabMove('previous')<CR>
+"map gt :call GTTabMove('next')<CR>
+"map gT :call GTTabMove('previous')<CR>
 function! GTTabMove(direction)
   if IsBufExplorerOpen() && tabpagenr('$') == 1
     if a:direction == 'next'

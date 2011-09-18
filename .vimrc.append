@@ -2,5 +2,7 @@ filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 let workspace='.'
+let g:projects = []
+call add(projects, ['vim','/home/srk/.vim'])
 source ~/.vim/.vimrc.mine
 
