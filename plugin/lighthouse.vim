@@ -237,18 +237,18 @@ function! FindWindow(bufName)
     return winNum
 endfunction
 
-let inumber = 1
+"let inumber = 1
 
-while inumber < 100
-  execute "map  " . inumber . "<Space> " . ":call GotoBuffer(" . inumber . ")<CR>"
-  execute "map  " . inumber . "<S-Space> " . ":split<CR>".inumber."<Space>"
-  execute "map  " . inumber . "<S-CR> " . ":vsplit<CR>".inumber."<Space>"
-  execute "map  " . inumber . "<Tab> " . ":tabnew<CR>".inumber."<Space>"
+"while inumber < 100
+  "execute "map  " . inumber . "<Space> " . ":call GotoBuffer(" . inumber . ")<CR>"
+  "execute "map  " . inumber . "<S-Space> " . ":split<CR>".inumber."<Space>"
+  "execute "map  " . inumber . "<S-CR> " . ":vsplit<CR>".inumber."<Space>"
+  "execute "map  " . inumber . "<Tab> " . ":tabnew<CR>".inumber."<Space>"
 
-  execute "map  " . inumber . "W " . ":call CloseProjectWithNumber(".inumber.")<CR>"
+  "execute "map  " . inumber . "W " . ":call CloseProjectWithNumber(".inumber.")<CR>"
 
-  let inumber = inumber + 1
-endwhile
+  "let inumber = inumber + 1
+"endwhile
 
 function! CloseProjectWithNumber(linenumber)
   let projectline = getbufline(bufnr('-MiniBufExplorer-'), a:linenumber)[0]
