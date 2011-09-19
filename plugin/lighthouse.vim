@@ -7,7 +7,7 @@ endif
 
 "autocmd BufEnter,BufWinEnter,WinEnter * call RemoveMiniBufDuplicateWindow() | call CloseAllIfOnlyBufExplorerLeft()
 "autocmd BufEnter * syntax on
-autocmd BufEnter * call SwitchToProjectCmd(ProjectNameOf(expand('%:p:h')))
+autocmd BufEnter * call SwitchToProject()
 
 function! CloseAllIfOnlyBufExplorerLeft()
   if winnr('$') == 1 && (IsBufExplorerOpen() || IsNERDTreeWindowOpen())
@@ -27,15 +27,14 @@ function! SetCurrentProject(project)
 endfunction
 
 function! SwitchToProject()
-  let current_dir = fnamemodify(getcwd(), ':p')
-  let name = ProjectNameOf(current_dir)
+  let name = ProjectNameOf(expand('%:p:h'))
 
   if name != ''
     call SwitchToProjectCmd(name)
   else
-    let project_name = substitute(fnamemodify(current_dir, ":h"), $HOME, "~", "")
+	let current_dir = fnamemodify(getcwd(), ':p')
+    let project_name = fnamemodify(current_dir, ':p:~')
     call add(g:projects, [project_name, current_dir])
-    call SwitchToProject()
   endif
 endfunction
 

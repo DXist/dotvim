@@ -10,7 +10,9 @@ autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
 
 " VIM user interface {{{
 " statusline по умолчанию
-set statusline=%<%f\ %y\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+if &statusline == ''
+	set statusline=%<%f\ %y\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+endif
 
 " статус - 2 строка снизу
 set laststatus=2
@@ -127,8 +129,8 @@ set completeopt=menuone,longest,preview
 "}}}
 
 " PROJECTS {{{
-if filereadable('projects.vim')
-	source projects.vim
+if filereadable(expand('~/.vim/projects.vim'))
+	source ~/.vim/projects.vim
 endif
 " }}}
 
