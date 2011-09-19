@@ -49,12 +49,12 @@ endfunction
 
 function! SwitchPath(path)
   execute 'cd ' . a:path
-  if IsNERDTreeWindowOpen()
-    exec ":NERDTreeToggle"
-    exec ":NERDTree " . getcwd()
-  else
-    let g:NERDTree_need_update = 1
-  endif
+  "if IsNERDTreeWindowOpen()
+  "  exec ":NERDTreeToggle"
+  "  exec ":NERDTree " . getcwd()
+  "else
+  "  let g:NERDTree_need_update = 1
+  "endif
 endfunction
 
 function! SwitchToPath()
@@ -284,22 +284,11 @@ function! ToggleBetweenNERDTreeAndBufExplorer()
 
   if IsBufExplorerOpen()
     exec ":CMiniBufExplorer"
-
-    if !IsNERDTreeWindowOpen()
-      if exists("g:NERDTree_need_update") && g:NERDTree_need_update
-        exec ":NERDTree " . getcwd()
-        let g:NERDTree_need_update = 0
-      else
-        exec ":NERDTreeToggle"
-      end
-    endif
+    exec ":NERDTreeClose"
+    exec ":NERDTreeToggle"
   else
-    if IsNERDTreeWindowOpen()
-      exec ":NERDTreeToggle"
-      exec ":MiniBufExplorer"
-    else
-      exec ":NERDTreeToggle"
-    endif
+    exec ":NERDTreeClose"
+    exec ":MiniBufExplorer"
   endif
 
   exec "wincmd p"

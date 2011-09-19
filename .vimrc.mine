@@ -241,8 +241,9 @@ let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplVSplit = 20
 
 " NERDTree
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-"map <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+let g:NERDTreeWinPos='right'
+map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
 map <Leader>gs :Gstatus<CR>
@@ -271,11 +272,8 @@ imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "}}}
 
 "light house
-"autocmd VimEnter * call SwitchToProject()
 autocmd TabEnter * execute ":UMiniBufExplorer"
-"map <LEADER>W :TMiniBufExplorerCloseAllOthers<CR>
-map <Leader>n :call ToggleBetweenNERDTreeAndBufExplorer()<CR>
-"map <C-!> :call CloseNERDTreeAndBufExplorer()<CR>
+"map <Leader>n :call ToggleBetweenNERDTreeAndBufExplorer()<CR>
 "map gt :call GTTabMove('next')<CR>
 "map gT :call GTTabMove('previous')<CR>
 function! GTTabMove(direction)
