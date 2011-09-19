@@ -175,7 +175,7 @@ nmap <space> <c-^>
 "}}}
 
 " SHELL {{{
-map <Leader>ms <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
+map <Leader>msm <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
 map <Leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
 map <Leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
 "}}}
@@ -184,6 +184,9 @@ map <Leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
 let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_CloseOnEnd = 1
+map <Leader>ms <ESC>:ConqueTermSplit python manage.py shell<CR>
+map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
+map <Leader>b <ESC>:ConqueTermSplit bash<CR>
 
 " CommandT
 let g:CommandTMaxHeight = 25
