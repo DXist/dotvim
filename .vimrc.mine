@@ -126,6 +126,12 @@ let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextD
 set completeopt=menuone,longest,preview
 "}}}
 
+" PROJECTS {{{
+if filereadable('projects.vim')
+	source projects.vim
+endif
+" }}}
+
 " MAPPINGS {{{
 " GENERAL {{{
 "Tab in visual mode
