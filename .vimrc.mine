@@ -75,7 +75,10 @@ autocmd BufWritePre * :%s/\(\\\)\@<!\s\+$//e
 set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
 "set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\,,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>,./
-set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
+if v:version>=703
+	" нужна поддержка unicode langmap
+	set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
+endif
 " по умолчанию - латинская раскладка
 set iminsert=0
 " по умолчанию - латинская раскладка при поиске
@@ -124,8 +127,12 @@ return "\<c-x>\<c-]>"
 " no return will result in the evaluation of the next
 " configured context
 endfunction
-let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover',]
+" omni-completion приоритетнее user-completion
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-k>", "&completefunc:<c-x><c-]>",]
 set completeopt=menuone,longest,preview
+set dictionary=~/.vim/spell/ru_RU_yo.utf8.dic
 "}}}
 
 " PROJECTS {{{
@@ -159,6 +166,10 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 "}}}
+
+" filetype setting
+map <Leader>fd <ESC>:set filetype=htmldjango<CR>
+map <Leader>fp <ESC>:set filetype=python<CR>
 
 " WINDOWS {{{
 "Перемещения по окнам
