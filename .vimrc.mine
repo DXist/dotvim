@@ -35,7 +35,7 @@ set incsearch
 set hlsearch
 
 set wildmenu wildmode=list:longest
-set wildignore=.o,.git,*.swp,*~
+set wildignore=*.o,.git,*.swp,*~,*.pyc
 "}}}
 
 " COLORS {{{
@@ -133,9 +133,9 @@ endfunction
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover',]
 " omni-completion приоритетнее user-completion
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-k>", "&completefunc:<c-x><c-]>",]
+let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-]>",]
 set completeopt=menuone,longest,preview
-set dictionary=~/.vim/spell/ru_RU_yo.utf8.dic
+"set dictionary=~/.vim/spell/ru_RU_yo.utf8.dic
 "}}}
 
 " PROJECTS {{{
