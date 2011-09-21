@@ -173,6 +173,8 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " filetype setting
 map <Leader>fd <ESC>:set filetype=htmldjango<CR>
 map <Leader>fp <ESC>:set filetype=python<CR>
+" use htmldjango instead of html
+autocmd FileType html set filetype=htmldjango
 
 " WINDOWS {{{
 "Перемещения по окнам
