@@ -94,6 +94,8 @@ set smarttab
 set softtabstop=4 "4 пробела в табе
 "Автоотступ
 set autoindent
+"Кодировки файлов
+set fileencodings=utf-8,ascii,cp1251,koi8-r
 
 "diff
 set diffopt+=vertical
@@ -204,6 +206,8 @@ map <Leader>b <ESC>:ConqueTermSplit bash<CR>
 let g:CommandTMaxHeight = 25
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTMaxFiles = 50000
+"очистка буфера
+nmap <Leader>tf <ESC>:CommandTFlush<CR>
 " поиск файлов в workspace
 if exists("workspace")
 	execute "nmap <Leader><Leader>t <ESC>:CommandT  ".workspace."<CR>"
