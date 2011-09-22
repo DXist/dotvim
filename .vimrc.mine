@@ -261,6 +261,9 @@ map <Leader>gs :Gstatus<CR>
 map <Leader>gc :Gcommit<space>
 map <Leader>gp :Git push<CR>
 map <Leader>gk :!gitk<CR>
+"Gitv
+map <Leader>gv :Gitv<CR>
+let g:Gitv_WipeAllOnClose = 1
 
 " Ropevim {{{
 " Rope AutoComplete
