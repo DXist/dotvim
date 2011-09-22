@@ -149,6 +149,13 @@ endif
 "Tab in visual mode
 vmap <Tab> >gv
 vmap <S-Tab> <gv
+" key mapping for tab navigation
+nmap <Tab> gt
+nmap <S-Tab> gT
+
+" clear search highlight
+nmap <silent> <leader>h :silent :nohlsearch<CR>
+
 
 " Paste mode
 set pastetoggle=<F2>
@@ -186,6 +193,9 @@ imap <c-j> <ESC><c-w>j
 imap <c-k> <ESC><c-w>k
 imap <c-l> <ESC><c-w>l
 imap <c-h> <ESC><c-w>h
+" Zoom in/out
+nmap <c-o> <c-w>o
+imap <c-o> <ESC><c-w>o
 " Переход между буферами
 nmap <space> <c-^>
 "}}}
