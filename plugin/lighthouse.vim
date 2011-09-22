@@ -3,10 +3,6 @@ if !exists("g:projects")
   let g:projects = []
 endif
 
-"autocmd VimEnter * call SwitchToProject()
-
-"autocmd BufEnter,BufWinEnter,WinEnter * call RemoveMiniBufDuplicateWindow() | call CloseAllIfOnlyBufExplorerLeft()
-"autocmd BufEnter * syntax on
 autocmd BufEnter * call SwitchToProject()
 
 function! CloseAllIfOnlyBufExplorerLeft()
@@ -116,105 +112,6 @@ function! PathOf(name)
   endif
 endfunction
 
-function! GotoBuffer(index)
-
-  let winNum = FindWindow('-MiniBufExplorer-')
-  exec l:winNum.' wincmd w'
-
-  if getline(a:index) =~ '\[.*\]'
-    let project_name = getline(a:index)
-    let project_name = substitute(project_name, '^\s*x\[', '', '')
-    let project_name = substitute(project_name, '\].*', '', '')
-
-    call SwitchToProjectCmd(project_name)
-    exec 'wincmd p'
-  else
-    call feedkeys(a:index . "G")
-    call feedkeys("\<CR>")
-  endif
-  call RemoveMiniBufDuplicateWindow()
-endfunction
-
-function! PreviousBuffer()
-  if IsBufExplorerOpen()
-    let buf_file = expand('%:t')
-
-    let winNum = FindWindow('-MiniBufExplorer-')
-    exec l:winNum.' wincmd w'
-    let last_line = getpos('$')[1]
-
-    let current = 1
-    while (current <= last_line)
-      if getline(current) =~ buf_file.'\*'
-        break
-      else
-        let current = current + 1
-      endif
-    endwhile
-
-    while(1)
-      if current == 1
-        let current = last_line
-      else
-        let current = current - 1
-      endif
-
-      if getline(current) !~ '\[.*\]'
-        call GotoBuffer(current)
-        return
-      endif
-    endwhile
-  endif
-
-  if IsNERDTreeWindowOpen()
-    let winNum = FindWindow(t:NERDTreeBufName)
-    exec l:winNum.' wincmd w'
-    call feedkeys("k\<CR>")
-  endif
-endfunction
-
-function! NextBuffer()
-  if IsBufExplorerOpen()
-    let buf_file = expand('%:t')
-
-    let winNum = FindWindow('-MiniBufExplorer-')
-    exec l:winNum.' wincmd w'
-
-    let current = 1
-    let last_line = getpos('$')[1]
-
-    while(current <= last_line)
-      if getline(current) =~ buf_file.'\*'
-        break
-      else
-        let current = current + 1
-      endif
-    endwhile
-
-    while(1)
-      if current == last_line
-        let current = 1
-      else
-        let current = current + 1
-      endif
-
-      if getline(current) !~ '\[.*\]'
-        call GotoBuffer(current)
-        return
-      endif
-    endwhile
-  endif
-
-  if IsNERDTreeWindowOpen()
-    let winNum = FindWindow(t:NERDTreeBufName)
-    exec l:winNum.' wincmd w'
-    call feedkeys("j\<CR>")
-  endif
-endfunction
-
-function! IsBufExplorerOpen()
-  return FindWindow('-MiniBufExplorer-') != -1
-endfunction
 
 function! IsNERDTreeWindowOpen()
     if exists("t:NERDTreeBufName")
@@ -237,62 +134,6 @@ function! FindWindow(bufName)
     return winNum
 endfunction
 
-"let inumber = 1
-
-"while inumber < 100
-  "execute "map  " . inumber . "<Space> " . ":call GotoBuffer(" . inumber . ")<CR>"
-  "execute "map  " . inumber . "<S-Space> " . ":split<CR>".inumber."<Space>"
-  "execute "map  " . inumber . "<S-CR> " . ":vsplit<CR>".inumber."<Space>"
-  "execute "map  " . inumber . "<Tab> " . ":tabnew<CR>".inumber."<Space>"
-
-  "execute "map  " . inumber . "W " . ":call CloseProjectWithNumber(".inumber.")<CR>"
-
-  "let inumber = inumber + 1
-"endwhile
-
-function! CloseProjectWithNumber(linenumber)
-  let projectline = getbufline(bufnr('-MiniBufExplorer-'), a:linenumber)[0]
-  let project = substitute(projectline, '[\[\]]', '', 'g')
-
-  call CloseProject(project)
-endfunction
-
-function! RemoveMiniBufDuplicateWindow()
-
-  if IsBufExplorerOpen() && IsNERDTreeWindowOpen()
-    exec ":CMiniBufExplorer"
-    return
-  endif
-
-  let l:NBuffers = bufnr('$')     " Get the number of the last buffer.
-  let l:i = 0                     " Set the buffer index to zero.
-  let l:miniBufOpened = 0
-  while(l:i <= l:NBuffers)
-    let l:i = l:i + 1
-    let l:BufName = bufname(l:i)
-    if l:BufName == '-MiniBufExplorer-' && bufwinnr(l:i) != -1
-      if l:miniBufOpened
-        execute 'bw '.l:i
-      else
-        let l:miniBufOpened = 1
-      end
-    endif
-  endwhile
-endfunction
-
-function! ToggleBetweenNERDTreeAndBufExplorer()
-
-  if IsBufExplorerOpen()
-    exec ":CMiniBufExplorer"
-    exec ":NERDTreeClose"
-    exec ":NERDTreeToggle"
-  else
-    exec ":NERDTreeClose"
-    exec ":MiniBufExplorer"
-  endif
-
-  exec "wincmd p"
-endfunction
 
 function! CloseProject(name)
   let l:NBuffers = bufnr('$')     " Get the number of the last buffer.
@@ -307,38 +148,4 @@ function! CloseProject(name)
   endwhile
 endfunction
 
-function! ToggleFoldProject(name)
-  if ProjectClosed(a:name)
-    call UnFoldProject(a:name)
-  else
-    call FoldProject(a:name)
-  endif
-endfunction
 
-function! UnFoldProject(name)
-  let tabClosed = GetFoldedProjects()
-  tabClosed[a:name] = 0
-endfunction
-
-function! FoldProject(name)
-  let tabClosed = GetFoldedProjects()
-  let tabClosed[a:name] = 1
-endfunction
-
-function! GetFoldedProjects()
-  if !exists('t:MinibufClosedProjects')
-    let t:MinibufFoldedProjects = {}
-  endif
-  return t:MinibufFoldedProjects
-endfunction
-
-function! CloseNERDTreeAndBufExplorer()
-    if IsNERDTreeWindowOpen()
-      exec ":NERDTreeToggle"
-    endif
-
-    if IsBufExplorerOpen()
-      exec ":TMiniBufExplorer"
-    endif
-    return
-endfunction

@@ -242,17 +242,8 @@ nmap g] g<C-]>
 map <Leader>td <Plug>TaskList
 map <Leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
-" miniBufExpl
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplVSplit = 20
-
 " NERDTree
 let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-let g:NERDTreeWinPos='right'
 map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
@@ -280,27 +271,6 @@ nmap <Leader>rj :RopeGotoDefinition<CR>
 nmap <Leader>rr :RopeRename<CR>
 imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "}}}
-
-"light house
-autocmd TabEnter * execute ":UMiniBufExplorer"
-"map <Leader>n :call ToggleBetweenNERDTreeAndBufExplorer()<CR>
-"map gt :call GTTabMove('next')<CR>
-"map gT :call GTTabMove('previous')<CR>
-function! GTTabMove(direction)
-  if IsBufExplorerOpen() && tabpagenr('$') == 1
-    if a:direction == 'next'
-      call NextBuffer()
-    else
-      call PreviousBuffer()
-    endif
-  elseif a:direction == 'next'
-    normal! gt
-  else
-    normal! gT
-  endif
-
-endfunction
-
 
 " VARIOUS {{{
 " PEP8
