@@ -153,6 +153,12 @@ vmap <S-Tab> <gv
 nmap <Tab> gt
 nmap <S-Tab> gT
 
+" ESC to far away
+imap jj <ESC>
+" for russian layout
+imap оо <ESC>
+
+
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
 
@@ -196,9 +202,15 @@ imap <c-h> <ESC><c-w>h
 " Zoom in/out
 nmap <c-o> <c-w>o
 imap <c-o> <ESC><c-w>o
+" Close window
+map <c-c> <c-w>c
+imap <c-c> <ESC><c-w>c
 " Переход между буферами
 nmap <space> <c-^>
 "}}}
+
+" BufExplorer
+let g:bufExplorerShowTabBuffer=1
 
 " SHELL {{{
 map <Leader>msm <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
@@ -212,7 +224,7 @@ let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_CloseOnEnd = 1
 map <Leader>ms <ESC>:ConqueTermSplit python manage.py shell<CR>
 map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
-map <Leader>b <ESC>:ConqueTermSplit bash<CR>
+map <Leader>ba <ESC>:ConqueTermSplit bash<CR>
 
 " FuzzyFinder
 map <Leader>f <ESC>:FufBuffer<CR>
@@ -257,12 +269,14 @@ let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
-map <Leader>gs :Gstatus<CR>
-map <Leader>gc :Gcommit<space>
-map <Leader>gp :Git push<CR>
-map <Leader>gk :!gitk<CR>
+map <Leader>gs <ESC>:Gstatus<CR>
+map <Leader>gd <ESC>:Gdiff<CR>
+map <Leader>gc <ESC>:Gcommit<CR>
+map <Leader>gca <ESC>:Gcommit -a<CR>
+map <Leader>gp <ESC>:Git push<CR>
+map <Leader>gk <ESC>:!gitk<CR>
 "Gitv
-map <Leader>gv :Gitv<CR>
+map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
 " Ropevim {{{
