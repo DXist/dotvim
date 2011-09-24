@@ -226,9 +226,6 @@ map <Leader>ms <ESC>:ConqueTermSplit python manage.py shell<CR>
 map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
 map <Leader>ba <ESC>:ConqueTermSplit bash<CR>
 
-" FuzzyFinder
-map <Leader>f <ESC>:FufBuffer<CR>
-
 " CommandT
 let g:CommandTMaxHeight = 25
 let g:CommandTMatchWindowReverse = 1
