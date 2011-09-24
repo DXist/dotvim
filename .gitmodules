@@ -88,3 +88,6 @@
 [submodule "bundle/vim-pony"]
 	path = bundle/vim-pony
 	url = git@github.com:DXist/vim-pony.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
