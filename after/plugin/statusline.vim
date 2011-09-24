@@ -1,7 +1,7 @@
 " statusline
 set statusline=
-if exists("*GetCurrentProject")
-	set statusline+=Project:\ %{GetCurrentProject()}\ 
+if exists("*lighthouse#statusline")
+	set statusline+=%{lighthouse#statusline()}\ 
 endif
 
 if exists("*fugitive#statusline")

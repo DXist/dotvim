@@ -4,6 +4,9 @@ filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
 " enable modeline
 set modeline
+" allow perdirectory rc-files
+set exrc
+set secure
 " автообновление настроек
 autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
 "}}}
@@ -35,7 +38,7 @@ set incsearch
 set hlsearch
 
 set wildmenu wildmode=list:longest
-set wildignore=*.o,.git,*.swp,*~,*.pyc
+set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,*.json,*.js
 "}}}
 
 " COLORS {{{
@@ -86,6 +89,7 @@ set imsearch=0
 "}}}
 
 " TEXT EDITING {{{
+set textwidth=0
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set tabstop=4
@@ -213,10 +217,14 @@ nmap <space> <c-^>
 let g:bufExplorerShowTabBuffer=1
 
 " SHELL {{{
-map <Leader>msm <ESC>:!./manage.py schemamigration $DJANGO_APP --auto<CR>
-map <Leader>mm <ESC>:!./manage.py migrate $DJANGO_APP <CR>
-map <Leader>mt <ESC>:!./manage.py test $DJANGO_APP <CR>
+map <Leader>msm <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --auto"<CR>
+map <Leader>msme <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --empty"<CR>
+map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
+map <Leader>mt <ESC>:exec ":Dmanage test " . lighthouse#getdjangoapp()<CR>
 "}}}
+
+"py-test-runner
+map <Leader>pt <ESC>:python RunUnitTestsUnderCursor()<CR>
 
 " Conque
 let g:ConqueTerm_InsertOnEnter = 1
@@ -232,6 +240,10 @@ let g:CommandTMatchWindowReverse = 1
 let g:CommandTMaxFiles = 50000
 "очистка буфера
 nmap <Leader>tf <ESC>:CommandTFlush<CR>
+" own map for <Leader>t
+nmap <Leader>ct :CommandT<CR>
+nmap <silent> <Leader>t <ESC>:call lighthouse#commandt_filesearch()<CR>
+
 " поиск файлов в workspace
 if exists("workspace")
 	execute "nmap <Leader><Leader>t <ESC>:CommandT  ".workspace."<CR>"
@@ -246,10 +258,10 @@ let g:surround_{char2nr("f")} = "{% for\1 \r..*\r &\1 %}\r{% endfor %}"
 " }}}
 
 " Ack, поиск текста
-nmap <Leader>a <Esc>:Ack!
+nmap <silent> <Leader>a <ESC>:call lighthouse#ack_grep()<CR>
 if exists("workspace")
 	" поиск текста в workspace
-	execute "nmap <Leader><Leader>a <ESC>:Ack!".workspace."<Home><right><right><right><right><right>"
+	execute "nmap <Leader><Leader>a <ESC>:Ack!  ".workspace."<Home><right><right><right><right><right>"
 endif
 
 " CTAGS
@@ -259,7 +271,6 @@ nmap g] g<C-]>
 
 "список TODO-меток
 map <Leader>td <Plug>TaskList
-map <Leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
 " NERDTree
 let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
