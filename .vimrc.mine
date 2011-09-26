@@ -216,7 +216,8 @@ nmap <space> <c-^>
 " BufExplorer
 let g:bufExplorerShowTabBuffer=1
 
-" SHELL {{{
+" Django {{{
+map <Leader>ms <ESC>:exec ":Dmanage syncdb<CR>
 map <Leader>msm <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --auto"<CR>
 map <Leader>msme <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --empty"<CR>
 map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
@@ -310,7 +311,7 @@ imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 " VARIOUS {{{
 " PEP8
 let g:pep8_map='<Leader>8'
-"let g:pyflakes_use_quickfix = 0
+let g:pyflakes_use_quickfix = 0
 map <Leader>u :GundoToggle<CR>
 map <Leader>p :TlistToggle<CR>
 "}}}
