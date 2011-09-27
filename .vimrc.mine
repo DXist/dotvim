@@ -279,6 +279,8 @@ map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
 map <Leader>gs <ESC>:Gstatus<CR>
+map <Leader>gsd <ESC>:Git svn dcommit<CR>
+map <Leader>gsp <ESC>:Git svn dcommit <bar> :Git push<CR>
 map <Leader>gd <ESC>:Gdiff<CR>
 map <Leader>gc <ESC>:Gcommit<CR>
 map <Leader>gca <ESC>:Gcommit -a<CR>
