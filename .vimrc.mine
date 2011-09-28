@@ -9,6 +9,8 @@ set exrc
 set secure
 " автообновление настроек
 autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
+" автообновление проектов
+autocmd BufWritePost projects.vim source ~/.vim/projects.vim
 "}}}
 
 " VIM user interface {{{
@@ -169,6 +171,7 @@ map <F4> <ESC>80\|gEl<INSERT><CR><ESC>
 map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 " Fast editing of the .vimrc
 map <Leader>v :e! ~/.vim/.vimrc.mine<CR>
+map <Leader>vp :e ~/.vim/projects.vim<CR>
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -264,6 +267,9 @@ endif
 set tags+=~/mytags
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
+
+"TTags
+let g:ttags_shorten_path = 0
 
 "список TODO-меток
 map <Leader>td <Plug>TaskList
