@@ -157,12 +157,6 @@ vmap <S-Tab> <gv
 nmap <Tab> gt
 nmap <S-Tab> gT
 
-" ESC to far away
-imap jj <ESC>
-" for russian layout
-imap оо <ESC>
-
-
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
 
@@ -219,6 +213,7 @@ let g:bufExplorerShowTabBuffer=1
 " Django {{{
 map <Leader>ms <ESC>:exec ":Dmanage syncdb<CR>
 map <Leader>msm <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --auto"<CR>
+map <Leader>mcs <ESC>:exec ":Dmanage convert_to_south " . lighthouse#getdjangoapp()<CR>
 map <Leader>msme <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --empty"<CR>
 map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
 map <Leader>mt <ESC>:exec ":Dmanage test " . lighthouse#getdjangoapp()<CR>
