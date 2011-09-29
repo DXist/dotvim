@@ -20,7 +20,7 @@ endfunction
 
 function! lighthouse#commandt_filesearch(...)
 	if exists("a:1")
-		let l:path = s:ProjectPathOf(a:1)
+		let l:path = s:ProjectSearchPathOf(a:1)
 		if !empty(l:path)
 			exec ":CommandT " . l:path
 		else
@@ -43,7 +43,7 @@ function! lighthouse#ack_grep(...)
 	endif
 
 	if exists("a:1")
-		let l:path = s:ProjectPathOf(a:1)
+		let l:path = s:ProjectSearchPathOf(a:1)
 		if empty(l:path)
 			echo "Project " . a:1 . " not found"
 			return
@@ -115,9 +115,14 @@ function! s:SwitchPath(path)
 	execute 'cd ' . a:path
 endfunction
 
-function! s:LoadProjectConfig()
-	if filereadable('.vimrc')
-		source .vimrc
+function! s:LoadProjectConfig(...)
+	let l:project_path = ''
+	if exists("a:1")
+		let l:project_path = fnamemodify(a:1, ':p')
+	endif
+
+	if filereadable(l:project_path . '.vimrc')
+		exec "source " . l:project_path . ".vimrc"
 	endif
 endfunction
 
@@ -145,6 +150,23 @@ function! s:ProjectPathOf(name)
 	return ''
 endfunction
 
+function! s:ProjectSearchPathOf(name)
+	let l:project_path = s:ProjectPathOf(a:name)
+	let b:search_path = ''
+	call s:LoadProjectConfig(l:project_path)
+	if exists("b:search_path")
+		if fnamemodify(b:search_path, ':.') != b:search_path
+			"absolute b:search_path
+			return b:search_path
+		endif
+	endif
+
+	if !empty(l:project_path)
+		return fnamemodify(l:project_path, ':p') . b:search_path
+	endif
+
+	return ''
+endfunction
 command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#commandt_filesearch('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseGrep :call lighthouse#ack_grep('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseClose :call lighthouse#closeproject('<args>')
