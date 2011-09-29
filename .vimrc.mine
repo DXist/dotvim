@@ -140,7 +140,8 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover',]
 " omni-completion приоритетнее user-completion
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-]>",]
-set completeopt=menuone,preview
+let g:SuperTabLongestEnhanced = 1
+set completeopt=menuone,preview,longest
 "set dictionary=~/.vim/spell/ru_RU_yo.utf8.dic
 "}}}
 
@@ -214,7 +215,7 @@ nmap <space> <c-^>
 let g:bufExplorerShowTabBuffer=1
 
 " Django {{{
-map <Leader>ms <ESC>:exec ":Dmanage syncdb<CR>
+map <Leader>msd <ESC>:Dmanage syncdb<CR>
 map <Leader>msm <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --auto"<CR>
 map <Leader>mcs <ESC>:exec ":Dmanage convert_to_south " . lighthouse#getdjangoapp()<CR>
 map <Leader>msme <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --empty"<CR>
