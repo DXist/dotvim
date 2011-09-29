@@ -1,4 +1,7 @@
-" inspired by https://github.com/vinhtiensinh/personal_vim/blob/master/plugin/lighthouse.vim
+" Lighthouse plugin is going to help to work with several projects in the same
+" time
+" Author: Rinat Shigapov <rinatshigapov@gmail.com>
+"
 if exists('g:loaded_lighthouse')
   finish
 endif
@@ -20,34 +23,18 @@ endfunction
 
 function! lighthouse#commandt_filesearch(...)
 	if exists("a:1")
-		let l:path = s:ProjectSearchPathOf(a:1)
-		if !empty(l:path)
-			exec ":CommandT " . l:path
-		else
-			echo "Project " . a:1 . " not found"
-		endif
-		return
-	endif
-	if exists("b:search_path")
-		exec ":CommandT " . b:search_path
+		let l:path = s:ProjectPath(a:1)
 	else
-		:CommandT
+		let l:path = s:ProjectPath()
 	endif
+	exec ":CommandT " . l:path
 endfunction
 
 function! lighthouse#ack_grep(...)
-	if exists("b:search_path")
-		let l:path = b:search_path
-	else
-		let l:path = ""
-	endif
-
 	if exists("a:1")
-		let l:path = s:ProjectSearchPathOf(a:1)
-		if empty(l:path)
-			echo "Project " . a:1 . " not found"
-			return
-		endif
+		let l:path = s:ProjectPath(a:1)
+	else
+		let l:path = s:ProjectPath()
 	endif
 	let l:pattern = input("Ack: ")
 	if !empty(l:pattern)
@@ -100,11 +87,16 @@ function! s:InitProject()
 endfunction
 
 function! s:SwitchToProject(name)
-	let project_path = s:ProjectPathOf(a:name)
-	if !empty(project_path)
+	let l:project_path = s:ProjectPath(a:name)
+	if !empty(l:project_path)
 		call s:SetCurrentProject(a:name)
-		call s:SwitchPath(project_path)
-		call s:LoadProjectConfig()
+		call s:LoadProjectConfig(l:project_path)
+		if exists("b:cd_subdir")
+			let l:cd_to = fnamemodify(l:project_path, ':p') . b:cd_subdir
+		else
+			let l:cd_to = l:project_path
+		endif
+		call s:SwitchPath(l:cd_to)
 		if b:project_type == 'django'
 			call s:SetDjangoApp()
 		endif
@@ -115,14 +107,10 @@ function! s:SwitchPath(path)
 	execute 'cd ' . a:path
 endfunction
 
-function! s:LoadProjectConfig(...)
-	let l:project_path = ''
-	if exists("a:1")
-		let l:project_path = fnamemodify(a:1, ':p')
-	endif
-
-	if filereadable(l:project_path . '.vimrc')
-		exec "source " . l:project_path . ".vimrc"
+function! s:LoadProjectConfig(project_path)
+	let l:rcfile = fnamemodify(a:project_path, ':p') . '.vimrc'
+	if filereadable(l:rcfile)
+		exec "source " . l:rcfile
 	endif
 endfunction
 
@@ -140,9 +128,16 @@ function! s:ProjectNameOf(name)
 	return ''
 endfunction
 
-function! s:ProjectPathOf(name)
+function! s:ProjectPath(...)
+	if exists("a:1")
+		let l:project_name = a:1
+	elseif exists("b:current_project")
+		let l:project_name = b:current_project
+	else
+		return ''
+	endif
 	for project in g:projects
-		if a:name == project[0] && isdirectory(project[1])
+		if l:project_name == project[0] && isdirectory(project[1])
 			return project[1]
 		endif
 	endfor
@@ -150,23 +145,6 @@ function! s:ProjectPathOf(name)
 	return ''
 endfunction
 
-function! s:ProjectSearchPathOf(name)
-	let l:project_path = s:ProjectPathOf(a:name)
-	let b:search_path = ''
-	call s:LoadProjectConfig(l:project_path)
-	if exists("b:search_path")
-		if fnamemodify(b:search_path, ':.') != b:search_path
-			"absolute b:search_path
-			return b:search_path
-		endif
-	endif
-
-	if !empty(l:project_path)
-		return fnamemodify(l:project_path, ':p') . b:search_path
-	endif
-
-	return ''
-endfunction
 command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#commandt_filesearch('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseGrep :call lighthouse#ack_grep('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseClose :call lighthouse#closeproject('<args>')
