@@ -121,13 +121,18 @@ def RunUnitTestsUnderCursor():
     (row, col) = vim.current.window.cursor
     filename = vim.eval("bufname('%')")
     appname = get_django_appname(filename)
-    djangoprg = get_prg(('manage.py', 'bin/django'))
     pythonprg = get_prg(('bin/python',), default='python')
+    settings = "--verbosity=0 --noinput"
+    try:
+        settings += " --settings=%s" % os.environ['DJANGO_SETTINGS_MODULE']
+        djangoprg = 'django-admin.py'
+    except KeyError:
+        djangoprg = '%s %s' % (pythonprg, get_prg(('manage.py', 'bin/django')))
     if appname and djangoprg:
         testname = get_test_name(vim.current.buffer[0:row])
         testname = appname + '.' + testname if testname else appname
-        makeprg = '{0} {1} test --verbosity=0 --noinput {2}'.\
-                      format(pythonprg, djangoprg, testname)
+        makeprg = '{0} test {1} {2}'.\
+                      format(djangoprg, settings, testname)
     else:
         makeprg = '{0} {1}'.format(pythonprg, filename)
     errorformat = vim_escape(r' %#File "%f"\, line %l\, %m')
@@ -142,3 +147,4 @@ def RunUnitTestsUnderCursor():
         vim.command(cmd)
     print(r'tested: {0}'.format(makeprg))
 EOF
+"vim: et

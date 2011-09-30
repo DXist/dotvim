@@ -14,3 +14,9 @@ for p in sys.path:
         # Command 'set' needs backslash before each space.
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
+python << EOF
+import os
+import sys
+if not sys.path.count('.'): sys.path.insert(0, '.')
+os.environ['DJANGO_SETTINGS_MODULE'] = "settings"
+EOF

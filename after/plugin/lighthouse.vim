@@ -103,9 +103,6 @@ function! s:SwitchToProject(name)
 			let l:cd_to = l:project_path
 		endif
 		call s:SwitchPath(l:cd_to)
-		if b:project_type == 'django'
-			call s:SetDjangoApp()
-		endif
 	endif
 endfunction
 
