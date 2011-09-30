@@ -103,3 +103,6 @@
 [submodule "bundle/ttags_vim"]
 	path = bundle/ttags_vim
 	url = git@github.com:DXist/ttags_vim.git
+[submodule "bundle/bufkill"]
+	path = bundle/bufkill
+	url = https://github.com/vim-scripts/bufkill.vim.git
