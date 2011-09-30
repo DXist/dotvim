@@ -141,7 +141,7 @@ def RunUnitTestsUnderCursor():
             'setlocal makeprg={0}'.format(vim_escape(makeprg)),
             'setlocal errorformat={0}'.format(errorformat),
             'silent! make',
-            'copen',
+            'copen 25',
             'wincmd w',
             'redraw!',
         ]:
