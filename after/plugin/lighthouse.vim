@@ -77,7 +77,7 @@ function! s:SetCurrentProject(project)
 endfunction
 
 function! s:InitProject()
-	let name = s:ProjectNameOf(expand('%:p:h'))
+	let name = s:ProjectNameOf(expand('%:p'))
 
 	if name != ''
 		call s:SwitchToProject(name)
@@ -91,8 +91,14 @@ function! s:SwitchToProject(name)
 	if !empty(l:project_path)
 		call s:SetCurrentProject(a:name)
 		call s:LoadProjectConfig(l:project_path)
-		if exists("b:cd_subdir")
-			let l:cd_to = fnamemodify(l:project_path, ':p') . b:cd_subdir
+		if exists("b:cd_to")
+			if b:cd_to[0] == '/' || b:cd_to[0] == '~'
+				"absolute path
+				let l:cd_to = b:cd_to
+			else
+				"relative path
+				let l:cd_to = fnamemodify(l:project_path, ':p') . b:cd_to
+			endif
 		else
 			let l:cd_to = l:project_path
 		endif
@@ -116,11 +122,13 @@ endfunction
 
 function! s:ProjectNameOf(name)
 	if strlen(a:name) == 0
-		return s:ProjectNameOf(getcwd())
+		let l:name = expand('%:p')
+	else
+		let l:name = a:name
 	endif
 
 	for project in g:projects
-		if a:name =~ project[1]
+		if l:name =~ project[1]
 			return project[0]
 		endif
 	endfor
