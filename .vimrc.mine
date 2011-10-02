@@ -213,6 +213,7 @@ nmap <space> <c-^>
 
 " BufExplorer
 let g:bufExplorerShowTabBuffer=1
+let g:bufExplorerShowRelativePath=1
 
 " Django {{{
 map <Leader>msd <ESC>:Dmanage syncdb<CR>

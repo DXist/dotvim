@@ -14,16 +14,49 @@ endif
 function! lighthouse#statusline()
 	if empty(&buftype)
 		call s:InitProject()
-		if !empty(b:current_project)
+		if exists("b:current_project") && !empty(b:current_project)
 			return 'Project: ' . b:current_project
 		endif
 	endif
 	return ''
 endfunction
 
+function! lighthouse#tablabel(n)
+        let label = ''
+        let buflist = tabpagebuflist(a:n)
+
+        " Имя файла и номер вкладки -->
+		if !empty(gettabvar(a:n, "current_project"))
+			let label = gettabvar(a:n, "current_project")
+		else
+			let label = substitute(bufname(buflist[tabpagewinnr(a:n) - 1]), '.*/', '', '')
+		endif
+
+		if label == ''
+			let label = '[No Name]'
+		endif
+
+		let label .= ' ' . a:n
+        " Имя файла и номер вкладки <--
+
+        " Определяем, есть ли во вкладке хотя бы один
+        " модифицированный буфер.
+        " -->
+		for i in range(len(buflist))
+			if getbufvar(buflist[i], "&modified")
+				let label = '[+] ' . label
+				break
+			endif
+		endfor
+        " <--
+
+        return label
+endfunction
+
 function! lighthouse#commandt_filesearch(...)
 	if exists("a:1")
 		let l:path = s:ProjectPath(a:1)
+		call s:SwitchToProjectTab(a:1)
 	else
 		let l:path = s:ProjectPath()
 	endif
@@ -33,6 +66,7 @@ endfunction
 function! lighthouse#ack_grep(...)
 	if exists("a:1")
 		let l:path = s:ProjectPath(a:1)
+		call s:SwitchToProjectTab(a:1)
 	else
 		let l:path = s:ProjectPath()
 	endif
@@ -72,15 +106,26 @@ function! s:Completion(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function! s:SetCurrentProject(project)
-	let b:project_type = ''
-	let b:current_project = a:project
+	if !empty(a:project)
+		let b:current_project = a:project
+		if !exists("t:current_project")
+			let t:current_project = a:project
+		endif
+	else
+		if exists("b:current_project")
+			unlet b:current_project
+		endif
+		if exists("t:current_project")
+			unlet t:current_project
+		endif
+	endif
 endfunction
 
 function! s:InitProject()
-	let name = s:ProjectNameOf(expand('%:p'))
+	let l:name = s:ProjectNameOf(expand('%:p'))
 
-	if name != ''
-		call s:SwitchToProject(name)
+	if l:name != ''
+		call s:SwitchToProject(l:name)
 	else
 		call s:SetCurrentProject('')
 	endif
@@ -150,20 +195,97 @@ function! s:ProjectPath(...)
 	return ''
 endfunction
 
+" get tab number by project name
+function! s:ProjectTabNr(project)
+	let l:ntabs = tabpagenr('$')
+	for n in range(1, l:ntabs)
+		if gettabvar(n, "current_project") == a:project
+			return n
+		endif
+	endfor
+	return 0
+endfunction
+
+function! s:SwitchToProjectTab(project)
+	let l:n = s:ProjectTabNr(a:project)
+	if l:n
+		exec ":tabn " . l:n
+	else
+		if exists("t:current_project")
+			:tabnew
+			call s:SetCurrentProject(a:project)
+		endif
+	endif
+endfunction
+
+function! s:BufferToProjectTab()
+	let l:current_project = getbufvar(bufname('%'), "current_project")
+	if !empty(l:current_project)
+		call s:SwitchToProjectTab(l:current_project)
+	endif
+endfunction
+
+function! s:ArrangeByProjects()
+	:bufdo call s:BufferToProjectTab()
+endfunction
+
+" Задаем собственные функции для назначения имен заголовкам табов -->
+function lighthouse#tabline()
+	let tabline = ''
+
+	" Формируем tabline для каждой вкладки -->
+		for i in range(tabpagenr('$'))
+			" Подсвечиваем заголовок выбранной в данный момент вкладки.
+			if i + 1 == tabpagenr()
+				let tabline .= '%#TabLineSel#'
+			else
+				let tabline .= '%#TabLine#'
+			endif
+
+			" Устанавливаем номер вкладки
+			let tabline .= '%' . (i + 1) . 'T'
+
+			" Получаем имя вкладки
+			let tabline .= ' %{lighthouse#tablabel(' . (i + 1) . ')} |'
+		endfor
+	" Формируем tabline для каждой вкладки <--
+
+	" Заполняем лишнее пространство
+	let tabline .= '%#TabLineFill#%T'
+
+	" Выровненная по правому краю кнопка закрытия вкладки
+	if tabpagenr('$') > 1
+		let tabline .= '%=%#TabLine#%999XX'
+	endif
+
+	return tabline
+endfunction
+
+function lighthouse#guitablabel()
+	return '%{lighthouse#tablabel(' . tabpagenr() . ')}'
+endfunction
+
+set tabline=%!lighthouse#tabline()
+set guitablabel=%!lighthouse#guitablabel()
+
 command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#commandt_filesearch('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseGrep :call lighthouse#ack_grep('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseClose :call lighthouse#closeproject('<args>')
+command! LightHouseArrange :call s:ArrangeByProjects()
 
 
 if !hasmapto(':LightHouseSearch<SPACE>')
-  silent! nmap <unique> <Leader>ls :LightHouseSearch<SPACE>
+	silent! nmap <unique> <Leader>ls :LightHouseSearch<SPACE>
 endif
 
 if !hasmapto(':LightHouseGrep<SPACE>')
-  silent! nmap <unique> <Leader>lg :LightHouseGrep<SPACE>
+	silent! nmap <unique> <Leader>lg :LightHouseGrep<SPACE>
 endif
 
 if !hasmapto(':LightHouseClose<SPACE>')
-  silent! nmap <unique> <Leader>lc :LightHouseClose<SPACE>
+	silent! nmap <unique> <Leader>lc :LightHouseClose<SPACE>
 endif
 
+if !hasmapto(':LightHouseArrange')
+	silent! nmap <unique> <Leader>la :LightHouseArrange<CR>
+endif
