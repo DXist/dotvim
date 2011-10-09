@@ -4,6 +4,9 @@ setlocal softtabstop=4 "4 пробела в табе
 "Ширина текста 79 символов
 setlocal textwidth=79
 setlocal cc=79
+
+call snipMate_python_demo#Activate()
+
 python << EOF
 import os
 import sys
