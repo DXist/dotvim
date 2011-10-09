@@ -56,6 +56,8 @@ endif
 " используем специальную палитру для solarized
 set t_Co=16
 "let g:solarized_termcolors=256
+"Easy motion
+let g:EasyMotion_do_shade = 0
 
 "Подсвечиваем все что можно подсвечивать
 let python_highlight_all = 1
@@ -173,16 +175,6 @@ map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 " Fast editing of the .vimrc
 map <Leader>v :e! ~/.vim/.vimrc.mine<CR>
 map <Leader>vp :e ~/.vim/projects.vim<CR>
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 "}}}
 
 " filetype setting
