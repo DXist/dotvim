@@ -78,6 +78,16 @@ function! lighthouse#ack_grep(...)
 	endif
 endfunction
 
+function! lighthouse#nerd_tree(...)
+	if exists("a:1")
+		let l:path = s:ProjectPath(a:1)
+		call s:SwitchToProjectTab(a:1)
+	else
+		let l:path = s:ProjectPath()
+	endif
+	exec ":NERDTree " . l:path
+endfunction
+
 function! lighthouse#getdjangoapp()
 	return expand('%:p:h:t')
 endfunction
@@ -270,6 +280,7 @@ set guitablabel=%!lighthouse#guitablabel()
 
 command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#commandt_filesearch('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseGrep :call lighthouse#ack_grep('<args>')
+command! -nargs=? -complete=customlist,s:Completion LightHouseNERDTree :call lighthouse#nerd_tree('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseClose :call lighthouse#closeproject('<args>')
 command! LightHouseArrange :call s:ArrangeByProjects()
 
@@ -280,6 +291,10 @@ endif
 
 if !hasmapto(':LightHouseGrep<SPACE>')
 	silent! nmap <unique> <Leader>lg :LightHouseGrep<SPACE>
+endif
+
+if !hasmapto(':LightHouseNerdTree<SPACE>')
+	silent! nmap <unique> <Leader>ln :LightHouseNERDTree<SPACE>
 endif
 
 if !hasmapto(':LightHouseClose<SPACE>')
