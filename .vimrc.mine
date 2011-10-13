@@ -107,6 +107,8 @@ set fileencodings=utf-8,ascii,cp1251,koi8-r
 
 "diff
 set diffopt+=vertical
+nmap dgl :diffget /2<CR>:diffupdate<CR>
+nmap dgr :diffget /3<CR>:diffupdate<CR>
 
 " для различения уровня отступов
 set list listchars=tab:\ \ ,trail:·
@@ -274,6 +276,7 @@ map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
 map <Leader>gs <ESC>:Gstatus<CR>
+map <Leader>gsr <ESC>:Git svn rebase<CR>
 map <Leader>gsd <ESC>:Git svn dcommit<CR>
 map <Leader>gsp <ESC>:Git svn dcommit <bar> :Git push<CR>
 map <Leader>gd <ESC>:Gdiff<CR>
