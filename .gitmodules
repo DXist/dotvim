@@ -97,9 +97,6 @@
 [submodule "bundle/pyflakes-vim"]
 	path = bundle/pyflakes-vim
 	url = https://github.com/kevinw/pyflakes-vim.git
-[submodule "bundle/ttags_vim"]
-	path = bundle/ttags_vim
-	url = git@github.com:DXist/ttags_vim.git
 [submodule "bundle/bufkill"]
 	path = bundle/bufkill
 	url = https://github.com/vim-scripts/bufkill.vim.git
@@ -115,3 +112,6 @@
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+[submodule "bundle/ttags_vim"]
+	path = bundle/ttags_vim
+	url = https://github.com/tomtom/ttags_vim.git
