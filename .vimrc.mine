@@ -40,7 +40,7 @@ set incsearch
 set hlsearch
 
 set wildmenu wildmode=list:longest
-set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,*.json,*.js
+set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc
 "}}}
 
 " COLORS {{{
@@ -73,8 +73,18 @@ set directory=~/.vim/tmp/,/tmp
 set viminfo+=%
 " нам нужно сохранить undo tree при переключении буферов
 set hidden
-" отсекаем неэкранированные пробелы на конце при сохранении
-autocmd BufWritePre * :%s/\(\\\)\@<!\s\+$//e
+function! RemoveTrailingWhitespace()
+	if &ft != "diff"
+		let b:curcol = col(".")
+		let b:curline = line(".")
+		" отсекаем неэкранированные пробелы на конце при сохранении
+		silent! %s/\(\\\)\@<!\s\+$//e
+		" пустые строки в конце файла
+		"silent! %s/\(\s*\n\)\+\%$//
+		call cursor(b:curline, b:curcol)
+	endif
+endfunction
+autocmd BufWritePre * call RemoveTrailingWhitespace()
 "}}}
 
 " LOCALIZATION {{{
@@ -88,8 +98,8 @@ if v:version>=703 || v:version == 702 && has("patch109")
 endif
 " по умолчанию - латинская раскладка
 set iminsert=0
-" по умолчанию - латинская раскладка при поиске
-set imsearch=0
+" так же как и для iminsert
+set imsearch=-1
 "}}}
 
 " TEXT EDITING {{{
@@ -140,13 +150,17 @@ return "\<c-x>\<c-]>"
 " no return will result in the evaluation of the next
 " configured context
 endfunction
+
+" Supertab
+let g:SuperTabMappingForward = '<nul>'
+let g:SuperTabMappingBackward = '<s-nul>'
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover',]
 " omni-completion приоритетнее user-completion
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-]>",]
 let g:SuperTabLongestEnhanced = 1
 set completeopt=menuone,preview,longest
-"set dictionary=~/.vim/spell/ru_RU_yo.utf8.dic
+"set dict :Git stash popionary=~/.vim/spell/ru_RU_yo.utf8.dic
 "}}}
 
 " PROJECTS {{{
@@ -163,6 +177,8 @@ xmap <S-Tab> <gv
 " key mapping for tab navigation
 nmap <Tab> gt
 nmap <S-Tab> gT
+" key mapping for keymap switch
+imap <Tab> <C-^>
 
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
@@ -277,7 +293,7 @@ map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
 map <Leader>gs <ESC>:Gstatus<CR>
-map <Leader>gsr <ESC>:Git svn rebase<CR>
+map <Leader>gsr <ESC>:Git stash  <bar> :Git svn rebase <bar> :Git stash pop<CR>
 map <Leader>gsd <ESC>:Git svn dcommit<CR>
 map <Leader>gsp <ESC>:Git svn dcommit <bar> :Git push<CR>
 map <Leader>gd <ESC>:Gdiff<CR>
