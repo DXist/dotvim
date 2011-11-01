@@ -336,6 +336,9 @@ map <Leader>bt :TagbarToggle<CR>
 " snipMate
 let g:snips_trigger_key = "<c-j>"
 let g:snips_trigger_key_backwards = "<c-k>"
+" delimitMate
+let g:delimitMate_nesting_quotes = ['"',"'"]
+let g:delimitMate_smart_quotes = 0
 "}}}
 "}}}
 " vim: set foldmethod=marker:
