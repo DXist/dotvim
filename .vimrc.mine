@@ -327,7 +327,10 @@ imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 " VARIOUS {{{
 " PEP8
+" pep8 plugin
 let g:pep8_map='<Leader>8'
+" vim-pep8
+let g:pep8_ignore="W391"
 let g:pyflakes_use_quickfix = 0
 map <Leader>u :GundoToggle<CR>
 "tagbar
