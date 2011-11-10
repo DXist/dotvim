@@ -118,3 +118,12 @@
 [submodule "bundle/vim-pep8"]
 	path = bundle/vim-pep8
 	url = https://github.com/jbking/vim-pep8.git
+[submodule "bundle/Tab-Manager"]
+	path = bundle/Tab-Manager
+	url = https://github.com/vim-scripts/Tab-Manager.git
+[submodule "bundle/getVar.vim"]
+	path = bundle/getVar.vim
+	url = https://github.com/vim-scripts/getVar.vim.git
+[submodule "bundle/lusty"]
+	path = bundle/lusty
+	url = https://github.com/sjbach/lusty.git
