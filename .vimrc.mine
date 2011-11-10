@@ -22,6 +22,12 @@ endif
 " статус - 2 строка снизу
 set laststatus=2
 
+set ttyfast
+if v:version>=703
+	set relativenumber
+endif
+set showcmd
+
 " Enable mouse usage (all modes)
 set mouse=a
 " меняем заголовок окна на titlestring
@@ -85,6 +91,7 @@ function! RemoveTrailingWhitespace()
 	endif
 endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
+au FocusLost * :wa
 "}}}
 
 " LOCALIZATION {{{
@@ -114,6 +121,8 @@ set softtabstop=4 "4 пробела в табе
 set autoindent
 "Кодировки файлов
 set fileencodings=utf-8,ascii,cp1251,koi8-r
+" замена всех соответствий
+set gdefault
 
 "diff
 set diffopt+=vertical
@@ -182,6 +191,9 @@ imap <Tab> <C-^>
 
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
+
+nnoremap j gj
+nnoremap k gk
 
 
 " Paste mode
