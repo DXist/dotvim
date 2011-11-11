@@ -187,7 +187,7 @@ xmap <S-Tab> <gv
 nmap <Tab> gt
 nmap <S-Tab> gT
 " key mapping for keymap switch
-imap <Tab> <C-^>
+"imap <Tab> <C-^>
 
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
