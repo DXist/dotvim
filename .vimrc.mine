@@ -195,7 +195,6 @@ nmap <silent> <leader>h :silent :nohlsearch<CR>
 nnoremap j gj
 nnoremap k gk
 
-
 " Paste mode
 set pastetoggle=<F2>
 " Перенос строки без разбития слов
@@ -335,7 +334,7 @@ nmap <Leader>rcp <ESC>:RopeCreatePackage<CR>
 nmap <Leader>rcm <ESC>:RopeCreateModule<CR>
 nmap <Leader>rj :RopeGotoDefinition<CR>
 nmap <Leader>rr :RopeRename<CR>
-imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+"imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "}}}
 
 " VARIOUS {{{
@@ -355,6 +354,12 @@ let g:snips_trigger_key_backwards = "<c-k>"
 " delimitMate
 let g:delimitMate_nesting_quotes = ['"',"'"]
 let g:delimitMate_smart_quotes = 0
+"lusty
+let g:LustyJugglerShowKeys = 'a'
+map <Leader>j :LustyJuggler<CR>
+"YankRing
+map <Leader>y :YRShow<CR>
+
 "}}}
 "}}}
 " vim: set foldmethod=marker:
