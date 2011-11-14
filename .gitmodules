@@ -130,3 +130,6 @@
 [submodule "bundle/vim-pony"]
 	path = bundle/vim-pony
 	url = https://github.com/rainerborene/vim-pony.git
+[submodule "bundle/neocomplcache"]
+	path = bundle/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git
