@@ -220,7 +220,6 @@ inoremap <expr><CR> pumvisible() ? "\<C-y>" . neocomplcache#smart_close_popup() 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#smart_close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
@@ -433,8 +432,9 @@ map <Leader>bt :TagbarToggle<CR>
 let g:snips_trigger_key = "<c-j>"
 let g:snips_trigger_key_backwards = "<c-k>"
 " delimitMate
-let g:delimitMate_nesting_quotes = ['"',"'"]
+let g:delimitMate_nesting_quotes = ['"']
 let g:delimitMate_smart_quotes = 0
+let g:delimitMate_quotes = '"'
 "lusty
 let g:LustyJugglerShowKeys = 'a'
 map <Leader>j :LustyJuggler<CR>
