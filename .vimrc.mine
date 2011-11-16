@@ -148,18 +148,10 @@ set foldopen+=insert
 "}}}
 
 " COMPLETION {{{
-<<<<<<< HEAD
 " дополнение тега и имени файла
 inoremap ^] ^X^]
 inoremap ^F ^X^F
 
-"Настройка omnicomletion для Python (а так же для js, html и css)
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-=======
->>>>>>> neocomplcache added
 let g:SuperTabDefaultCompletionType = "context"
 function! MyTagContext()
 return "\<c-x>\<c-]>"
@@ -271,9 +263,6 @@ nmap <S-Tab> gT
 
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
-
-nnoremap j gj
-nnoremap k gk
 
 " Paste mode
 set pastetoggle=<F2>
