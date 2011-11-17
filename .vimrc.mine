@@ -148,6 +148,10 @@ set foldopen+=insert
 "}}}
 
 " COMPLETION {{{
+" дополнение тега и имени файла
+inoremap ^] ^X^]
+inoremap ^F ^X^F
+
 "Настройка omnicomletion для Python (а так же для js, html и css)
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
