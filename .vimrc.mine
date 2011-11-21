@@ -205,7 +205,7 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><CR> pumvisible() ? "\<C-y>" . neocomplcache#smart_close_popup()  : "\<CR>"
+inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Recommended key-mappings.
 " <TAB>: completion.
