@@ -424,9 +424,6 @@ let g:snips_trigger_key_backwards = "<c-k>"
 let g:delimitMate_nesting_quotes = ['"']
 let g:delimitMate_smart_quotes = 0
 let g:delimitMate_quotes = '"'
-"lusty
-let g:LustyJugglerShowKeys = 'a'
-map <Leader>j :LustyJuggler<CR>
 "YankRing
 map <Leader>y :YRShow<CR>
 
