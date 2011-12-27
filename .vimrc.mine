@@ -266,8 +266,8 @@ nmap <silent> <leader>h :silent :nohlsearch<CR>
 
 " Paste mode
 set pastetoggle=<F2>
-" Перенос строки без разбития слов
-map <F4> <ESC>80\|gEl<INSERT><CR><ESC>
+" Перенос строки без разбития аргументов
+map <F4> <ESC>80\|T,s<CR><ESC>
 " Обновление .vimrc.mine
 map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 " Fast editing of the .vimrc
