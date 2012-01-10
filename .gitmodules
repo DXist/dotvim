@@ -46,8 +46,8 @@
 	path = bundle/ropevim
 	url = https://github.com/sontek/rope-vim.git
 	ignore = untracked
-[submodule "vim-pathogen"]
-	path = vim-pathogen
+[submodule "bundle/vim-pathogen"]
+	path = bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
 	ignore = untracked
 [submodule "bundle/acp"]

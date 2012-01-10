@@ -1,16 +1,26 @@
 " GENERAL {{{
-set nocompatible
-filetype on                          " try to detect filetypes
-filetype plugin indent on    " enable loading indent file for filetype
-" enable modeline
-set modeline
-" allow perdirectory rc-files
-set exrc
-set secure
-" автообновление настроек
-autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
-" автообновление проектов
-autocmd BufWritePost projects.vim source ~/.vim/projects.vim
+if !exists('s:loaded_my_vimrc')
+	set nocompatible
+	" Pathogen load
+	filetype off
+
+	call pathogen#infect()
+	call pathogen#helptags()
+
+	filetype on                          " try to detect filetypes
+	filetype plugin indent on    " enable loading indent file for filetype
+	syntax on
+	" enable modeline
+	set modeline
+	" allow perdirectory rc-files
+	set exrc
+	set secure
+	" автообновление настроек
+	autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
+	" автообновление проектов
+	autocmd BufWritePost projects.vim source ~/.vim/projects.vim
+	let s:loaded_my_vimrc = 1
+endif
 "}}}
 
 " VIM user interface {{{
@@ -429,4 +439,9 @@ map <Leader>y :YRShow<CR>
 
 "}}}
 "}}}
+" Local settings
+" ================
+if filereadable($HOME . "/.vimrc.local")
+    source $HOME/.vimrc.local
+endif
 " vim: set foldmethod=marker:
