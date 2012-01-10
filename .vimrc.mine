@@ -42,7 +42,13 @@ set showcmd
 set mouse=a
 " меняем заголовок окна на titlestring
 set title
+" nocursorline in insert mode
 set cursorline
+au InsertEnter * set nocursorline
+au InsertLeave * set cursorline
+set visualbell              " mute error bell"
+set scrolloff=4             " min 4 symbols bellow cursor"
+set linebreak               " break lines by words"
 " новое окно помещаем справа от текущего
 set splitright
 set previewheight=25
@@ -55,13 +61,17 @@ set smartcase
 set incsearch
 " подсветка найденных соответствий
 set hlsearch
+set showmatch               " Show matching brackets
 
-set wildmenu wildmode=list:longest
+" wildmenu
+set wildmenu
 set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc
+set wildcharm=<C-Z>
+source $VIMRUNTIME/menu.vim
+
 "}}}
 
 " COLORS {{{
-syntax on                           " syntax highlighing
 " тёмный фон
 set bg=dark
 silent! colorscheme solarized
@@ -80,7 +90,7 @@ let g:EasyMotion_do_shade = 0
 let python_highlight_all = 1
 "}}}
 
-" FILES, BACKUPS, SAVING {{{
+" FILES, BACKUPS, BUFFERS, SAVING {{{
 " keep a backup file
 set backup
 " бэкапы и swap-файлы храним во временной директории
@@ -88,8 +98,13 @@ set backupdir=~/.vim/backup/,/tmp
 set directory=~/.vim/tmp/,/tmp
 " сохраняем буферы между сессиями
 set viminfo+=%
-" нам нужно сохранить undo tree при переключении буферов
-set hidden
+
+set hidden					" hide buffers when they are abandoned
+set autoread				" auto reload externally changed files
+set autowriteall
+" Save current open file when window focus is lost
+au FocusLost * if &modifiable && &modified | write | endif
+
 function! RemoveTrailingWhitespace()
 	if &ft != "diff"
 		let b:curcol = col(".")
@@ -102,7 +117,6 @@ function! RemoveTrailingWhitespace()
 	endif
 endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
-au FocusLost * :wa
 "}}}
 
 " LOCALIZATION {{{
@@ -114,8 +128,12 @@ if v:version>=703 || v:version == 702 && has("patch109")
 	" нужна поддержка unicode langmap
 	set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
 endif
+set spelllang=en,ru
+set langmenu=none            " Always use english menu
+"Кодировки файлов
+set fileencodings=utf-8,cp1251,koi8-r,cp866
 "lmap is off and IM is off
-set iminsert=0
+set iminsert=0               " English by default"
 set imsearch=0
 "}}}
 
@@ -123,16 +141,20 @@ set imsearch=0
 set textwidth=0
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+set smarttab
 set tabstop=4
 set shiftwidth=4
-set smarttab
+set shiftround
 set softtabstop=4 "4 пробела в табе
-"Автоотступ
-set autoindent
-"Кодировки файлов
-set fileencodings=utf-8,ascii,cp1251,koi8-r
+set autoindent              " copy indent from previous line
 " замена всех соответствий
 set gdefault
+
+" Undo
+if has('persistent_undo')
+	set undofile				" enable persistent undo
+	set undodir=/tmp/vimundo    " store undofiles in a tmp dir
+endif
 
 "diff
 set diffopt+=vertical
@@ -140,24 +162,27 @@ nmap dgl :diffget /2<CR>:diffupdate<CR>
 nmap dgr :diffget /3<CR>:diffupdate<CR>
 
 " для различения уровня отступов
-set list listchars=tab:\ \ ,trail:·
+set listchars=tab:\ \ ,trail:·,extends:⋯,precedes:⋯,nbsp:~
 "set list listchars=tab:»·,trail:·
 ""}}}
 
 " FOLDING - сворачивание {{{
-set foldcolumn=3
-set fdm=indent
-set fdn=2
-set fml=15
-set foldopen+=insert
+if has('folding')
+	set foldcolumn=3
+	set fdm=indent
+	set fdn=2
+	set fml=15
+	set foldopen+=insert
+endif
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window.  Protect against
 " screwing up folding when switching between windows.
 "autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 "autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 "}}}
-
 " COMPLETION {{{
+" учитываем case при дополнении
+set infercase
 " дополнение тега и имени файла
 inoremap ^] ^X^]
 inoremap ^F ^X^F
@@ -273,7 +298,15 @@ nmap <S-Tab> gT
 
 " clear search highlight
 nmap <silent> <leader>h :silent :nohlsearch<CR>
+" Command mode {{{
+" ------------
 
+	" Allow command line editing like emacs
+	cnoremap <C-A>      <Home>
+	cnoremap <C-B>      <Left>
+	cnoremap <C-F>      <Right>
+
+" }}}
 " Paste mode
 set pastetoggle=<F2>
 " Перенос строки без разбития аргументов
@@ -392,6 +425,16 @@ map <Leader>gc <ESC>:Gcommit<CR>
 map <Leader>gca <ESC>:Gcommit -a<CR>
 map <Leader>gp <ESC>:Git push<CR>
 map <Leader>gk <ESC>:!gitk<CR>
+" Git fugitive menu
+noremap <Leader>g :emenu Git.<C-Z>
+menu Git.Status :Gstatus<CR>
+menu Git.Diff :Gdiff<CR>
+menu Git.Commit :Gcommit %<CR>
+menu Git.Checkout :Gread<CR>
+menu Git.Remove :Gremove<CR>
+menu Git.Move :Gmove<CR>
+menu Git.Log :Glog<CR>
+menu Git.Blame :Gblame<CR>
 "Gitv
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
