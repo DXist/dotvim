@@ -22,10 +22,6 @@
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
 	ignore = untracked
-[submodule "bundle/pydoc"]
-	path = bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
-	ignore = untracked
 [submodule "bundle/pep8"]
 	path = bundle/pep8
 	url = https://github.com/vim-scripts/pep8.git
@@ -41,10 +37,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/vim-scripts/The-NERD-tree.git
-	ignore = untracked
-[submodule "bundle/ropevim"]
-	path = bundle/ropevim
-	url = https://github.com/sontek/rope-vim.git
 	ignore = untracked
 [submodule "bundle/vim-pathogen"]
 	path = bundle/vim-pathogen
@@ -117,10 +109,6 @@
 [submodule "bundle/vim-addon-mw-utils"]
 	path = bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-	ignore = untracked
-[submodule "bundle/pyflakes-vim"]
-	path = bundle/pyflakes-vim
-	url = https://github.com/kevinw/pyflakes-vim.git
 	ignore = untracked
 [submodule "bundle/bufkill"]
 	path = bundle/bufkill
