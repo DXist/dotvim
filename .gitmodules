@@ -174,3 +174,7 @@
 	path = bundle/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object
 	ignore = untracked
+[submodule "bundle/vim-session"]
+	path = bundle/vim-session
+	url = https://github.com/xolox/vim-session.git
+	ignore = untracked

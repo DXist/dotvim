@@ -1,6 +1,7 @@
 .VimballRecord
 .netrwhist
 view/
+sessions/
 tmp/
 *~
 projects.vim

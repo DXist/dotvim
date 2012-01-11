@@ -96,8 +96,6 @@ set backup
 " бэкапы и swap-файлы храним во временной директории
 set backupdir=~/.vim/backup/,/tmp
 set directory=~/.vim/tmp/,/tmp
-" сохраняем буферы между сессиями
-set viminfo+=%
 
 set hidden					" hide buffers when they are abandoned
 set autoread				" auto reload externally changed files
@@ -344,6 +342,11 @@ imap <c-c> <ESC><c-w>c
 nmap <space> <c-^>
 set switchbuf=usetab
 "}}}
+
+" Session.vim
+let g:session_autosave = "yes"
+" expand sym links
+let g:session_directory = resolve(expand("~/.vim/sessions"))
 
 " BufExplorer
 let g:bufExplorerShowTabBuffer=1
