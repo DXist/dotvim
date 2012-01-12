@@ -1,4 +1,4 @@
-" GENERAL {{{
+" GENERAL {{{1
 if !exists('s:loaded_my_vimrc')
 	set nocompatible
 	" Pathogen load
@@ -21,9 +21,11 @@ if !exists('s:loaded_my_vimrc')
 	autocmd BufWritePost projects.vim source ~/.vim/projects.vim
 	let s:loaded_my_vimrc = 1
 endif
+
+set history=1000
 "}}}
 
-" VIM user interface {{{
+" VIM user interface {{{1
 " statusline по умолчанию
 if &statusline == ''
 	set statusline=%<%f\ %y\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -71,7 +73,7 @@ source $VIMRUNTIME/menu.vim
 
 "}}}
 
-" COLORS {{{
+" COLORS {{{1
 " тёмный фон
 set bg=dark
 silent! colorscheme solarized
@@ -90,7 +92,7 @@ let g:EasyMotion_do_shade = 0
 let python_highlight_all = 1
 "}}}
 
-" FILES, BACKUPS, BUFFERS, SAVING {{{
+" FILES, BACKUPS, BUFFERS, SAVING {{{1
 " keep a backup file
 set backup
 " бэкапы и swap-файлы храним во временной директории
@@ -117,7 +119,7 @@ endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 "}}}
 
-" LOCALIZATION {{{
+" LOCALIZATION {{{1
 " удобно при наборе русских текстов
 set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
@@ -135,7 +137,7 @@ set iminsert=0               " English by default"
 set imsearch=0
 "}}}
 
-" TEXT EDITING {{{
+" TEXT EDITING {{{1
 set textwidth=0
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -164,7 +166,7 @@ set listchars=tab:\ \ ,trail:·,extends:⋯,precedes:⋯,nbsp:~
 "set list listchars=tab:»·,trail:·
 ""}}}
 
-" FOLDING - сворачивание {{{
+" FOLDING - сворачивание {{{1
 if has('folding')
 	set foldcolumn=3
 	set fdm=indent
@@ -178,7 +180,7 @@ endif
 "autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 "autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 "}}}
-" COMPLETION {{{
+" COMPLETION {{{1
 " учитываем case при дополнении
 set infercase
 " дополнение тега и имени файла
@@ -200,7 +202,9 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover',]
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-]>",]
 let g:SuperTabLongestEnhanced = 1
-set completeopt=menuone,longest
+set completeopt=menuone,longest ",preview
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 " Neocomplcache {{{
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -277,14 +281,17 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 "}}}
 "}}}
 
-" PROJECTS {{{
+" PROJECTS {{{1
 if filereadable(expand('~/.vim/projects.vim'))
 	source ~/.vim/projects.vim
 endif
 " }}}
 
-" MAPPINGS {{{
-" GENERAL {{{
+" MAPPINGS {{{1
+" GENERAL {{{2
+let mapleader = ","
+" Fast saving
+nmap <leader>w :w<cr>
 "Tab in visual mode
 xmap <Tab> >gv
 xmap <S-Tab> <gv
@@ -322,7 +329,7 @@ map <Leader>fp <ESC>:set filetype=python<CR>
 " use htmldjango instead of html
 autocmd FileType html set filetype=htmldjango
 
-" WINDOWS {{{
+" WINDOWS {{{2
 "Перемещения по окнам
 map <c-j> <c-w>j
 map <c-k> <c-w>k
@@ -343,6 +350,7 @@ nmap <space> <c-^>
 set switchbuf=usetab
 "}}}
 
+" PLUGINS {{{2
 " Session.vim
 let g:session_autosave = "yes"
 " expand sym links
@@ -462,7 +470,7 @@ nmap <Leader>rr :RopeRename<CR>
 "imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 "}}}
 
-" VARIOUS {{{
+" VARIOUS {{{2
 " PEP8
 " pep8 plugin
 let g:pep8_map='<Leader>8'
