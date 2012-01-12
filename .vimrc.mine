@@ -449,6 +449,14 @@ menu Git.Blame :Gblame<CR>
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
+" Python-mode
+let g:pymode_lint_checker = "pyflakes"
+" breaks cc
+let g:pymode_motion = 0
+let g:pymode_options_other = 0
+
+
+
 " Ropevim {{{
 " Rope AutoComplete
 imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>

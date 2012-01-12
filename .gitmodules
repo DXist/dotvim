@@ -166,3 +166,6 @@
 	path = bundle/vim-session
 	url = https://github.com/xolox/vim-session.git
 	ignore = untracked
+[submodule "bundle/python-mode"]
+	path = bundle/python-mode
+	url = https://github.com/klen/python-mode.git
