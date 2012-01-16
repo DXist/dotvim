@@ -291,7 +291,7 @@ endif
 " GENERAL {{{2
 let mapleader = ","
 " Fast saving
-nmap <leader>w :w<cr>
+nmap <leader>s :w<cr>
 "Tab in visual mode
 xmap <Tab> >gv
 xmap <S-Tab> <gv
@@ -378,7 +378,6 @@ let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_CloseOnEnd = 1
 map <Leader>ms <ESC>:ConqueTermSplit python manage.py shell<CR>
 map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
-map <Leader>ba <ESC>:ConqueTermSplit bash<CR>
 
 " CommandT
 let g:CommandTMaxHeight = 25
@@ -479,7 +478,7 @@ let g:pep8_ignore="W391"
 let g:pyflakes_use_quickfix = 0
 map <Leader>u :GundoToggle<CR>
 "tagbar
-map <Leader>bt :TagbarToggle<CR>
+map <Leader><space> :TagbarToggle<CR>
 "let g:tagbar_singleclick = 1
 " snipMate
 let g:snips_trigger_key = "<c-j>"
