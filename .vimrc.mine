@@ -451,6 +451,8 @@ let g:Gitv_WipeAllOnClose = 1
 
 " Python-mode
 let g:pymode_lint_checker = "pyflakes"
+let g:pymode_lint_onfly = 1
+let g:pymode_lint_cwindow = 0
 " breaks cc
 let g:pymode_motion = 0
 let g:pymode_options_other = 0
