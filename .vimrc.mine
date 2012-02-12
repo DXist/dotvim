@@ -314,6 +314,7 @@ nmap <silent> <leader>h :silent :nohlsearch<CR>
 " }}}
 " Paste mode
 set pastetoggle=<F2>
+map <F3> :set nowrap!<CR>
 " Перенос строки без разбития аргументов
 map <F4> <ESC>80\|T,s<CR><ESC>
 " Обновление .vimrc.mine
