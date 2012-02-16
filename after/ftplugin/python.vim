@@ -7,6 +7,7 @@ setlocal commentstring=#%s
 if v:version>=703
 	setlocal cc=79
 endif
+let b:delimitMate_smart_quotes = 0
 
 call snipMate_python_demo#Activate()
 
