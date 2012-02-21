@@ -11,9 +11,15 @@ if !exists("g:projects")
 	let g:projects = []
 endif
 
+if !exists("g:lighthouse_search_cmd")
+	let g:lighthouse_search_cmd = "CtrlP"
+endif
+
 function! lighthouse#statusline()
 	if empty(&buftype)
-		call s:InitProject()
+		if !exists("b:current_project")
+			call s:InitProject()
+		endif
 		if exists("b:current_project") && !empty(b:current_project)
 			return 'Project: ' . b:current_project
 		endif
@@ -53,14 +59,14 @@ function! lighthouse#tablabel(n)
         return label
 endfunction
 
-function! lighthouse#commandt_filesearch(...)
+function! lighthouse#filesearch(...)
 	if exists("a:1")
 		let l:path = s:ProjectPath(a:1)
 		call s:SwitchToProjectTab(a:1)
 	else
 		let l:path = s:ProjectPath()
 	endif
-	exec ":CommandT " . l:path
+	exec ":" . g:lighthouse_search_cmd . " " . l:path
 endfunction
 
 function! lighthouse#ack_grep(...)
@@ -162,7 +168,7 @@ function! s:SwitchToProject(name)
 endfunction
 
 function! s:SwitchPath(path)
-	execute 'cd ' . a:path
+	execute 'lcd ' . a:path
 endfunction
 
 function! s:LoadProjectConfig(project_path)
@@ -278,7 +284,7 @@ endfunction
 set tabline=%!lighthouse#tabline()
 set guitablabel=%!lighthouse#guitablabel()
 
-command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#commandt_filesearch('<args>')
+command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#filesearch('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseGrep :call lighthouse#ack_grep('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseNERDTree :call lighthouse#nerd_tree('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseClose :call lighthouse#closeproject('<args>')

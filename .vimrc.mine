@@ -380,20 +380,18 @@ let g:ConqueTerm_CloseOnEnd = 1
 map <Leader>ms <ESC>:ConqueTermSplit python manage.py shell<CR>
 map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
 
-" CommandT
-let g:CommandTMaxHeight = 25
-let g:CommandTMatchWindowReverse = 1
-let g:CommandTMaxFiles = 50000
-"очистка буфера
-nmap <Leader>tf <ESC>:CommandTFlush<CR>
-" own map for <Leader>t
-nmap <Leader>ct :CommandT<CR>
-nmap <silent> <Leader>t <ESC>:call lighthouse#commandt_filesearch()<CR>
+" Ctrlp
+"let g:ctrlp_map = '<leader>t'
+let g:ctrlp_extensions = ['buffertag']
+let g:ctrlp_mruf_relative = 1
+" I use lighthouse
+let g:ctrlp_path_mode = 0
+nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
 
 " поиск файлов в workspace
-if exists("workspace")
-	execute "nmap <Leader><Leader>t <ESC>:CommandT  ".workspace."<CR>"
-endif
+" if exists("workspace")
+" 	execute "nmap <Leader><Leader>t <ESC>:".lighthouse_search_cmd."  ".workspace."<CR>"
+" endif
 
 " vim-surround {{{
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1 %}\r{% endblock %}"
