@@ -101,9 +101,8 @@ set directory=~/.vim/tmp/,/tmp
 
 set hidden					" hide buffers when they are abandoned
 set autoread				" auto reload externally changed files
-set autowriteall
 " Save current open file when window focus is lost
-au FocusLost * if &modifiable && &modified | write | endif
+"au FocusLost * if &modifiable && &modified | write | endif
 
 function! RemoveTrailingWhitespace()
 	if &ft != "diff"
@@ -384,6 +383,7 @@ map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
 "let g:ctrlp_map = '<leader>t'
 let g:ctrlp_extensions = ['buffertag']
 let g:ctrlp_mruf_relative = 1
+let g:ctrlp_max_height = 25
 " I use lighthouse
 let g:ctrlp_path_mode = 0
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
@@ -456,6 +456,7 @@ let g:pymode_breakpoint_key = "<leader>br"
 " breaks cc
 let g:pymode_motion = 0
 let g:pymode_options_other = 0
+let g:pymode_rope = 0
 
 
 
