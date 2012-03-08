@@ -459,27 +459,6 @@ let g:pymode_options_other = 0
 let g:pymode_rope = 0
 
 
-
-" Ropevim {{{
-" Rope AutoComplete
-imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
-"let ropevim_codeassist_maxfixes=10
-"let ropevim_guess_project=1
-let ropevim_vim_completion=1
-let ropevim_enable_autoimport=1
-let ropevim_extended_complete=1
-let ropevim_codeassist_maxfixes=10
-"let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
-
-nmap <Leader>roi <ESC>:RopeOrganizeImports<CR>1<CR>
-nmap <Leader>rai <ESC>:RopeAutoImport<CR>
-nmap <Leader>rcp <ESC>:RopeCreatePackage<CR>
-nmap <Leader>rcm <ESC>:RopeCreateModule<CR>
-nmap <Leader>rj :RopeGotoDefinition<CR>
-nmap <Leader>rr :RopeRename<CR>
-"imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
-"}}}
-
 " VARIOUS {{{2
 " PEP8
 " pep8 plugin
