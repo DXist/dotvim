@@ -384,8 +384,6 @@ map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
 let g:ctrlp_extensions = ['buffertag']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_max_height = 25
-" I use lighthouse
-let g:ctrlp_path_mode = 0
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
 
 " поиск файлов в workspace

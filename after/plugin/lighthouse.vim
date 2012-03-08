@@ -164,6 +164,7 @@ function! s:SwitchToProject(name)
 			let l:cd_to = l:project_path
 		endif
 		call s:SwitchPath(l:cd_to)
+		let b:ctrlp_working_path_mode = 0
 	endif
 endfunction
 
