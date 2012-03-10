@@ -473,6 +473,7 @@ let g:snips_trigger_key = "<c-j>"
 let g:snips_trigger_key_backwards = "<c-k>"
 " delimitMate
 let g:delimitMate_nesting_quotes = ['"']
+au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
 "let g:delimitMate_smart_quotes = 0
 "let g:delimitMate_quotes = '"'
 "YankRing
