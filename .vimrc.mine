@@ -314,8 +314,10 @@ nmap <silent> <leader>h :silent :nohlsearch<CR>
 " Paste mode
 set pastetoggle=<F2>
 map <F3> :set nowrap!<CR>
+" Подсветка подозрительных аналогов ascii символов
+map <F4> /[соех]<CR>
 " Перенос строки без разбития аргументов
-map <F4> <ESC>80\|T,s<CR><ESC>
+"map <F4> <ESC>80\|T,s<CR><ESC>
 " Обновление .vimrc.mine
 map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
 " Fast editing of the .vimrc
