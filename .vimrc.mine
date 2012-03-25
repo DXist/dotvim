@@ -451,6 +451,7 @@ let g:Gitv_WipeAllOnClose = 1
 " Syntastic
 let g:loaded_syntastic_plugin = 1
 " Python-mode
+let g:pymode_lint_checker = "pyflakes"
 let g:pymode_lint_onfly = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_breakpoint_key = "<leader>br"
