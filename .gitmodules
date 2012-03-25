@@ -22,10 +22,6 @@
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
 	ignore = untracked
-[submodule "bundle/pep8"]
-	path = bundle/pep8
-	url = https://github.com/vim-scripts/pep8.git
-	ignore = untracked
 [submodule "bundle/py.test"]
 	path = bundle/py.test
 	url = https://github.com/alfredodeza/pytest.vim.git

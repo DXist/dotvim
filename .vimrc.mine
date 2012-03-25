@@ -448,8 +448,9 @@ menu Git.Blame :Gblame<CR>
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
+" Syntastic
+let g:loaded_syntastic_plugin = 1
 " Python-mode
-let g:pymode_lint_checker = "pyflakes"
 let g:pymode_lint_onfly = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_breakpoint_key = "<leader>br"
@@ -460,12 +461,8 @@ let g:pymode_rope = 0
 
 
 " VARIOUS {{{2
-" PEP8
-" pep8 plugin
-let g:pep8_map='<Leader>8'
 " vim-pep8
-let g:pep8_ignore="W391"
-let g:pyflakes_use_quickfix = 0
+"let g:pep8_ignore="W391"
 map <Leader>u :GundoToggle<CR>
 "tagbar
 map <Leader><space> :TagbarToggle<CR>
