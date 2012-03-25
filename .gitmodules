@@ -134,10 +134,6 @@
 	path = bundle/ttags_vim
 	url = https://github.com/tomtom/ttags_vim.git
 	ignore = untracked
-[submodule "bundle/vim-pep8"]
-	path = bundle/vim-pep8
-	url = https://github.com/jbking/vim-pep8.git
-	ignore = untracked
 [submodule "bundle/YankRing.vim"]
 	path = bundle/YankRing.vim
 	url = https://github.com/vim-scripts/YankRing.vim.git
