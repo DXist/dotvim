@@ -149,6 +149,9 @@ set autoindent              " copy indent from previous line
 " замена всех соответствий
 set gdefault
 
+" formatting
+map Q gq
+
 " Undo
 if has('persistent_undo')
 	set undofile				" enable persistent undo
