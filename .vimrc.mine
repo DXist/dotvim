@@ -149,6 +149,9 @@ set autoindent              " copy indent from previous line
 " замена всех соответствий
 set gdefault
 
+" formatting
+map Q gq
+
 " Undo
 if has('persistent_undo')
 	set undofile				" enable persistent undo
@@ -449,8 +452,10 @@ map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
 " Syntastic
-let g:loaded_syntastic_plugin = 1
+let g:syntastic_python_checker_args='--ignore=W391'
+
 " Python-mode
+let g:pymode_lint = 0
 let g:pymode_lint_checker = "pyflakes"
 let g:pymode_lint_onfly = 1
 let g:pymode_lint_cwindow = 0
