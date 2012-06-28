@@ -282,8 +282,8 @@ function lighthouse#guitablabel()
 	return '%{lighthouse#tablabel(' . tabpagenr() . ')}'
 endfunction
 
-set tabline=%!lighthouse#tabline()
-set guitablabel=%!lighthouse#guitablabel()
+" set tabline=%!lighthouse#tabline()
+" set guitablabel=%!lighthouse#guitablabel()
 
 command! -nargs=? -complete=customlist,s:Completion LightHouseSearch :call lighthouse#filesearch('<args>')
 command! -nargs=? -complete=customlist,s:Completion LightHouseGrep :call lighthouse#ack_grep('<args>')
