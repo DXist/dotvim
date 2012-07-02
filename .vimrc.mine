@@ -457,6 +457,7 @@ let g:pymode_lint = 0
 let g:pymode_lint_checker = "pyflakes"
 let g:pymode_lint_onfly = 1
 let g:pymode_lint_cwindow = 0
+let g:pymode_options_other = 0
 let g:pymode_breakpoint_key = "<leader>br"
 " breaks cc
 let g:pymode_motion = 0
