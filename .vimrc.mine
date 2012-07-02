@@ -452,9 +452,6 @@ menu Git.Blame :Gblame<CR>
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
-" Syntastic
-let g:syntastic_python_checker_args='--ignore=W391'
-
 " Python-mode
 let g:pymode_lint = 0
 let g:pymode_lint_checker = "pyflakes"
