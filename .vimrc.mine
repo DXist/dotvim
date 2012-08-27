@@ -383,9 +383,11 @@ map <Leader>md <ESC>:ConqueTermSplit python manage.py dbshell<CR>
 
 " Ctrlp
 "let g:ctrlp_map = '<leader>t'
-let g:ctrlp_extensions = ['buffertag']
+let g:ctrlp_extensions = ['buffertag', 'line']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_max_height = 25
+nmap <Leader>l <ESC>:CtrlPLine<CR>
+nmap <Leader>b <ESC>:CtrlPBufTagAll<CR>
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
 
 " поиск файлов в workspace
