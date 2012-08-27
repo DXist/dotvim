@@ -362,10 +362,6 @@ let g:session_autosave = "yes"
 " expand sym links
 let g:session_directory = resolve(expand("~/.vim/sessions"))
 
-" BufExplorer
-let g:bufExplorerShowTabBuffer=1
-let g:bufExplorerShowRelativePath=1
-
 " Django {{{
 map <Leader>msd <ESC>:Dmanage syncdb<CR>
 map <Leader>msm <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --auto"<CR>
