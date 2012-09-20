@@ -420,9 +420,6 @@ nmap g} <c-W>g}
 "TTags
 let g:ttags_shorten_path = 0
 
-"список TODO-меток
-map <Leader>td <Plug>TaskList
-
 " NERDTree
 let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>

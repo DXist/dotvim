@@ -26,10 +26,6 @@
 	path = bundle/py.test
 	url = https://github.com/alfredodeza/pytest.vim.git
 	ignore = untracked
-[submodule "bundle/tasklist"]
-	path = bundle/tasklist
-	url = https://github.com/vim-scripts/TaskList.vim.git
-	ignore = untracked
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/vim-scripts/The-NERD-tree.git
