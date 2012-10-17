@@ -87,7 +87,6 @@ set t_Co=16
 "let g:solarized_termcolors=256
 "Easy motion
 let g:EasyMotion_do_shade = 0
-let g:EasyMotion_leader_key = "<Leader>e"
 
 "Подсвечиваем все что можно подсвечивать
 let python_highlight_all = 1
