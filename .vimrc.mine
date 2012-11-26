@@ -326,6 +326,9 @@ endif
 " MAPPINGS {{{1
 " GENERAL {{{2
 let mapleader = ","
+" learn faster escape
+map <Esc> :echo "Type C-[ for faster typing"<CR>
+
 " Fast saving
 nmap <leader>s :w<cr>
 "Tab in visual mode
@@ -514,8 +517,6 @@ let g:delimitMate_nesting_quotes = ['"']
 au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
 "let g:delimitMate_smart_quotes = 0
 "let g:delimitMate_quotes = '"'
-"YankRing
-map <Leader>y :YRShow<CR>
 
 "}}}
 "}}}
