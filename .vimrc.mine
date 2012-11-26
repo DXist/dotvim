@@ -459,6 +459,11 @@ let g:pymode_motion = 0
 let g:pymode_options_other = 0
 let g:pymode_rope = 0
 
+" Syntastic
+
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+
 
 " VARIOUS {{{2
 " vim-pep8
