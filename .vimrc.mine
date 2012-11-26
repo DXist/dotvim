@@ -1,11 +1,45 @@
 " GENERAL {{{1
 if !exists('s:loaded_my_vimrc')
-	set nocompatible
-	" Pathogen load
-	filetype off
+	set nocompatible               " be iMproved
+	filetype off                   " required!
 
-	call pathogen#infect()
-	call pathogen#helptags()
+	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
+
+	" let Vundle manage Vundle
+	" required!
+	Bundle 'gmarik/vundle'
+
+	" My Bundles here:
+	"
+	" original repos on github
+	Bundle 'tpope/vim-fugitive'
+	" syntax files
+	Bundle 'tpope/vim-git'
+	Bundle 'gregsexton/gitv'
+	Bundle 'tpope/vim-surround'
+	Bundle 'tpope/vim-repeat'
+	Bundle 'tpope/vim-commentary'
+	Bundle 'mileszs/ack.vim.git'
+	Bundle 'altercation/vim-colors-solarized'
+	Bundle 'itspriddle/vim-javascript-indent'
+	Bundle 'scrooloose/syntastic'
+	Bundle 'bkad/CamelCaseMotion'
+	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+	Bundle 'majutsushi/tagbar'
+	Bundle 'Raimondi/delimitMate'
+	Bundle 'rainerborene/vim-pony'
+	Bundle 'Shougo/vimproc'
+	Bundle 'Shougo/neocomplcache'
+	Bundle 'michaeljsmith/vim-indent-object'
+	Bundle 'xolox/vim-session'
+	Bundle 'klen/python-mode'
+	Bundle 'kien/ctrlp.vim'
+
+	" vim-scripts repos
+	Bundle 'ZoomWin'
+	Bundle 'bufkill.vim'
 
 	filetype on                          " try to detect filetypes
 	filetype plugin indent on    " enable loading indent file for filetype
