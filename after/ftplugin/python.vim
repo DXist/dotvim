@@ -9,8 +9,6 @@ if v:version>=703
 endif
 let b:delimitMate_smart_quotes = 0
 
-call snipMate_python_demo#Activate()
-
 python << EOF
 import os
 import sys

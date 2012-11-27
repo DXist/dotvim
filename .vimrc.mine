@@ -36,6 +36,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'xolox/vim-session'
 	Bundle 'klen/python-mode'
 	Bundle 'kien/ctrlp.vim'
+	Bundle 'thinca/vim-template'
 
 	" vim-scripts repos
 	Bundle 'ZoomWin'
@@ -326,8 +327,6 @@ endif
 " MAPPINGS {{{1
 " GENERAL {{{2
 let mapleader = ","
-" learn faster escape
-map <Esc> :echo "Type C-[ for faster typing"<CR>
 
 " Fast saving
 nmap <leader>s :w<cr>
@@ -383,7 +382,6 @@ imap <c-l> <ESC><c-w>l
 imap <c-h> <ESC><c-w>h
 " Zoom in/out
 nmap <c-o> <c-w>o
-imap <c-o> <ESC><c-w>o
 " Close window
 map <c-c> <c-w>c
 imap <c-c> <ESC><c-w>c
