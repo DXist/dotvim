@@ -78,7 +78,11 @@ function! lighthouse#ack_grep(...)
 	endif
 	let l:pattern = input("Ack: ")
 	if !empty(l:pattern)
-		exec ":Ack! " . l:pattern . " " . l:path
+		let l:cmd = ":Ack! " . l:pattern
+		if empty(l:path)
+			let l:cmd = l:cmd . " " . l:path
+		endif
+		exec l:cmd
 	else
 		echo
 	endif
