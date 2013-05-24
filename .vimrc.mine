@@ -384,7 +384,6 @@ imap <c-h> <ESC><c-w>h
 nmap <c-o> <c-w>o
 " Close window
 map <c-c> <c-w>c
-imap <c-c> <ESC><c-w>c
 " Переход между буферами
 nmap <space> <c-^>
 set switchbuf=usetab
