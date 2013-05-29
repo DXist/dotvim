@@ -33,6 +33,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'Shougo/vimproc'
 	Bundle 'Shougo/neocomplcache'
 	Bundle 'michaeljsmith/vim-indent-object'
+	Bundle 'xolox/vim-misc'
 	Bundle 'xolox/vim-session'
 	Bundle 'klen/python-mode'
 	Bundle 'kien/ctrlp.vim'
