@@ -446,7 +446,7 @@ if exists("workspace")
 endif
 
 " CTAGS
-set tags+=~/mytags
+set tags+=exumberant_tags
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
 nmap g} <c-W>g}
