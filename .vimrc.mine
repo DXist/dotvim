@@ -38,6 +38,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'klen/python-mode'
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'thinca/vim-template'
+	Bundle 'me-vlad/spellfiles.vim'
 
 	" vim-scripts repos
 	Bundle 'ZoomWin'
