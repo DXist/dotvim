@@ -353,7 +353,9 @@ if exists("workspace")
 endif
 
 " CTAGS
-set tags+=exumberant_tags
+if exists("$VIRTUAL_ENV")
+	set tags^=$VIRTUAL_ENV/.tags
+endif
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
 nmap g} <c-W>g}
