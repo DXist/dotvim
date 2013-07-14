@@ -254,8 +254,8 @@ nmap <leader>s :w<cr>
 xmap <Tab> >gv
 xmap <S-Tab> <gv
 " key mapping for tab navigation
-nmap <Tab> gt
-nmap <S-Tab> gT
+nmap <C-n> gt
+nmap <C-p> gT
 " key mapping for keymap switch
 "imap <Tab> <C-^>
 
@@ -323,7 +323,7 @@ map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
 map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
 
 " Ctrlp
-"let g:ctrlp_map = '<leader>t'
+let g:ctrlp_map = '<Nul>'
 let g:ctrlp_extensions = ['buffertag', 'line']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_max_height = 25
