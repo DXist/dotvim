@@ -40,7 +40,6 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'me-vlad/spellfiles.vim'
 
 	" vim-scripts repos
-	Bundle 'ZoomWin'
 	Bundle 'bufkill.vim'
 
 	filetype on                          " try to detect filetypes
@@ -292,20 +291,15 @@ map <Leader>fp <ESC>:set filetype=python<CR>
 autocmd FileType html set filetype=htmldjango
 
 " WINDOWS {{{2
-"Перемещения по окнам
+" Window movement
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-"imap <c-j> <ESC><c-w>j
-"imap <c-k> <ESC><c-w>k
-imap <c-l> <ESC><c-w>l
-imap <c-h> <ESC><c-w>h
-" Zoom in/out
-nmap <c-o> <c-w>o
+
 " Close window
 map <c-c> <c-w>c
-" Переход между буферами
+" Switch to alternate buffer
 nmap <space> <c-^>
 set switchbuf=usetab
 "}}}
