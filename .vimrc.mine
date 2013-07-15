@@ -26,7 +26,6 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'scrooloose/syntastic'
 	Bundle 'bkad/CamelCaseMotion'
 	Bundle 'Lokaltog/vim-easymotion'
-	Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 	Bundle 'majutsushi/tagbar'
 	Bundle 'Raimondi/delimitMate'
 	Bundle 'rainerborene/vim-pony'
