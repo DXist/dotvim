@@ -39,7 +39,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'me-vlad/spellfiles.vim'
 
 	" vim-scripts repos
-	Bundle 'bufkill.vim'
+	Bundle 'dbarsam/bufkill.vim'
 
 	filetype on                          " try to detect filetypes
 	filetype plugin indent on    " enable loading indent file for filetype
