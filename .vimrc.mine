@@ -37,9 +37,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'thinca/vim-template'
 	Bundle 'me-vlad/spellfiles.vim'
-
-	" vim-scripts repos
-	Bundle 'dbarsam/bufkill.vim'
+	Bundle 'dbarsam/vim-bufkill'
 
 	filetype on                          " try to detect filetypes
 	filetype plugin indent on    " enable loading indent file for filetype
@@ -393,7 +391,8 @@ let g:pymode_lint_checker = "pyflakes"
 let g:pymode_lint_onfly = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_options_other = 0
-let g:pymode_breakpoint_key = "<leader>br"
+let g:pymode_breakpoint = 0
+"let g:pymode_breakpoint_key = "<leader>br"
 " breaks cc
 let g:pymode_motion = 0
 let g:pymode_options_other = 0
@@ -420,6 +419,8 @@ let g:delimitMate_nesting_quotes = ['"']
 au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
 "let g:delimitMate_smart_quotes = 0
 "let g:delimitMate_quotes = '"'
+" Bufkill
+let g:BufKillCreateMappings = 0
 
 "}}}
 "}}}
