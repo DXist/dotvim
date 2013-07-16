@@ -20,6 +20,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'tpope/vim-surround'
 	Bundle 'tpope/vim-repeat'
 	Bundle 'tpope/vim-commentary'
+	Bundle 'jmcantrell/vim-virtualenv'
 	Bundle 'mileszs/ack.vim.git'
 	Bundle 'altercation/vim-colors-solarized'
 	Bundle 'itspriddle/vim-javascript-indent'
@@ -33,7 +34,6 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'michaeljsmith/vim-indent-object'
 	Bundle 'xolox/vim-misc'
 	Bundle 'xolox/vim-session'
-	Bundle 'klen/python-mode'
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'thinca/vim-template'
 	Bundle 'me-vlad/spellfiles.vim'
@@ -386,18 +386,8 @@ menu Git.Blame :Gblame<CR>
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
 
-" Python-mode
-let g:pymode_lint = 0
-let g:pymode_lint_checker = "pyflakes"
-let g:pymode_lint_onfly = 1
-let g:pymode_lint_cwindow = 0
-let g:pymode_options_other = 0
-let g:pymode_breakpoint = 0
-"let g:pymode_breakpoint_key = "<leader>br"
-" breaks cc
-let g:pymode_motion = 0
-let g:pymode_options_other = 0
-let g:pymode_rope = 0
+let g:virtualenv_auto_activate = 1
+let g:virtualenv_stl_format = '(%n)'
 
 " Syntastic
 
