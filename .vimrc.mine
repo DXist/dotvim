@@ -38,6 +38,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'thinca/vim-template'
 	Bundle 'me-vlad/spellfiles.vim'
 	Bundle 'dbarsam/vim-bufkill'
+	Bundle 'SirVer/ultisnips'
 
 	filetype on                          " try to detect filetypes
 	filetype plugin indent on    " enable loading indent file for filetype
@@ -402,6 +403,7 @@ let g:pymode_rope = 0
 
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+let g:syntastic_python_flake8_args='--max-complexity=10'
 
 "YcmComplteter
 
@@ -421,6 +423,12 @@ au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
 "let g:delimitMate_quotes = '"'
 " Bufkill
 let g:BufKillCreateMappings = 0
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsListSnippets = "<Leader>u"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 
 "}}}
 "}}}
