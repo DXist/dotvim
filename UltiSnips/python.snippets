@@ -1,3 +1,15 @@
 snippet l "Logging inline comment" b
 logger.${2:debug}('${1:message}')
 endsnippet
+
+snippet # "Magic encoding comment" b!
+# coding: utf-8
+endsnippet
+
+snippet "# p"   "pylint disable" w
+# pylint: disable=${1:errors}
+endsnippet
+
+snippet "# n"   "pylint wildcard" w
+# noqa pylint: disable=W0401
+endsnippet
