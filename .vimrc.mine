@@ -326,7 +326,7 @@ let g:ctrlp_extensions = ['buffertag', 'line']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_max_height = 25
 nmap <Leader>l <ESC>:CtrlPLine<CR>
-nmap <Leader>b <ESC>:CtrlPBufTagAll<CR>
+nmap <Leader>r <ESC>:CtrlPBufTagAll<CR>
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
 
 " поиск файлов в workspace
@@ -385,6 +385,7 @@ menu Git.Blame :Gblame<CR>
 "Gitv
 map <Leader>gv <ESC>:Gitv<CR>
 let g:Gitv_WipeAllOnClose = 1
+let g:Gitv_DoNotMapCtrlKey = 0
 
 let g:virtualenv_auto_activate = 1
 let g:virtualenv_stl_format = '(%n)'
