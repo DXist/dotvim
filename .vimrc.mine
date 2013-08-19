@@ -123,6 +123,8 @@ let g:EasyMotion_do_shade = 0
 
 "Подсвечиваем все что можно подсвечивать
 let python_highlight_all = 1
+" Highlight leading tabs
+match SpecialKey /^\t\+/
 "}}}
 
 " FILES, BACKUPS, BUFFERS, SAVING {{{1
@@ -156,7 +158,7 @@ autocmd BufWritePre * call RemoveTrailingWhitespace()
 set keymap=russian-jcukenwin
 "проблема с бэкслешем ,
 "set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\,,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>,./
-if v:version>=703 || v:version == 702 && has("patch109")
+if v:version>=703 || (v:version == 702 && has("patch109"))
 	" нужна поддержка unicode langmap
 	set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
 endif
