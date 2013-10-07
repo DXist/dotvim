@@ -39,6 +39,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'me-vlad/spellfiles.vim'
 	Bundle 'dbarsam/vim-bufkill'
 	Bundle 'SirVer/ultisnips'
+	Bundle 'benatkin/vim-move-between-tabs'
 
 	filetype on                          " try to detect filetypes
 	filetype plugin indent on    " enable loading indent file for filetype
@@ -100,7 +101,7 @@ set showmatch               " Show matching brackets
 
 " wildmenu
 set wildmenu
-set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc
+set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg-info/*,dist
 set wildcharm=<C-Z>
 source $VIMRUNTIME/menu.vim
 
@@ -156,11 +157,9 @@ autocmd BufWritePre * call RemoveTrailingWhitespace()
 " LOCALIZATION {{{1
 " удобно при наборе русских текстов
 set keymap=russian-jcukenwin
-"проблема с бэкслешем ,
-"set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\,,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>,./
 if v:version>=703 || (v:version == 702 && has("patch109"))
 	" нужна поддержка unicode langmap
-	set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
+	set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,б\\,,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>,Ё~
 endif
 set spelllang=en,ru
 set langmenu=none            " Always use english menu
@@ -250,6 +249,7 @@ let mapleader = ","
 
 " Fast saving
 nmap <leader>s :w<cr>
+nmap <leader>x :silent w !sudo tee %<cr>:e!<cr>
 "Tab in visual mode
 xmap <Tab> >gv
 xmap <S-Tab> <gv
@@ -322,6 +322,10 @@ map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
 "py-test-runner
 map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
 
+" Brakepoint
+map <Leader>n oimport ipdb; ipdb.set_trace()  # FIXME: brakepoint<ESC>
+
+
 " Ctrlp
 let g:ctrlp_map = '<Nul>'
 let g:ctrlp_extensions = ['buffertag', 'line']
@@ -359,10 +363,6 @@ endif
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
 nmap g} <c-W>g}
-
-" NERDTree
-let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
 
 " fugitive, git команды
 map <Leader>gs <ESC>:Gstatus<CR>
@@ -405,6 +405,7 @@ let g:syntastic_python_flake8_args='--max-complexity=10'
 "YcmComplteter
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jf :YcmCompleter GoToDeclaration<CR>
 
 " VARIOUS {{{2
 "tagbar
