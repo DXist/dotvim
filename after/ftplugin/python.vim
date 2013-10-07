@@ -15,7 +15,6 @@ import sys
 import vim
 
 if not sys.path.count('.'): sys.path.insert(0, '.')
-os.environ['DJANGO_SETTINGS_MODULE'] = "settings"
 for p in sys.path:
     # Add each directory in sys.path, if it exists.
     if os.path.isdir(p):
