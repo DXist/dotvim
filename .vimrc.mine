@@ -101,7 +101,7 @@ set showmatch               " Show matching brackets
 
 " wildmenu
 set wildmenu
-set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg-info/*,dist
+set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg-info/*,dist,deb_dist,pyshared
 set wildcharm=<C-Z>
 source $VIMRUNTIME/menu.vim
 
@@ -234,7 +234,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "YouCompleteMe conflicts with delimitMate]
 let g:ycm_key_list_previous_completion = ['<Up>']
-
+let g:ycm_collect_identifiers_from_tags_files = 1
 "}}}
 
 " PROJECTS {{{1
@@ -399,7 +399,7 @@ let g:syntastic_style_error_symbol='✗'
 let g:syntastic_warning_symbol='➤'
 let g:syntastic_style_warning_symbol='➤'
 let g:syntastic_python_checkers=['pylama']
-let g:syntastic_python_pylama_args='--linters pyflakes,pep8,pep257,mccabe --options=~/.pylama.ini'
+let g:syntastic_python_pylama_args='--linters pylint,pyflakes,pep8,pep257,mccabe --options=~/.pylama.ini'
 let g:syntastic_python_flake8_args='--max-complexity=10'
 
 "YcmComplteter
