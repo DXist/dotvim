@@ -3,7 +3,7 @@ call add(projects, ['vim', expand('~/.vim')])
 
 function! s:projects_from_path(path, prefix)
 	let l:projects = []
-	for s:project_path in split(glob(a:path . '/*'))
+	for s:project_path in reverse(split(glob(a:path . '/*')))
 		if isdirectory(s:project_path)
 			call add(projects, [a:prefix . fnamemodify(s:project_path, ':t'), s:project_path])
 		endif
