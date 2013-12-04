@@ -321,6 +321,7 @@ map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
 
 "py-test-runner
 map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
+map <Leader>mr <ESC>:python run_test()<CR>
 
 " Brakepoint
 map <Leader>n oimport ipdb; ipdb.set_trace()  # FIXME: brakepoint<ESC>
