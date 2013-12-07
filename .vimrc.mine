@@ -178,7 +178,7 @@ set smarttab
 set tabstop=4
 set shiftwidth=4
 set shiftround
-set softtabstop=4 "4 пробела в табе
+set softtabstop=-1 " the same value as shiftwidth
 set autoindent              " copy indent from previous line
 " замена всех соответствий
 set gdefault
