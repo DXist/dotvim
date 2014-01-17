@@ -234,7 +234,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "YouCompleteMe conflicts with delimitMate]
 let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_collect_identifiers_from_tags_files = 1
 "}}}
 
 " PROJECTS {{{1
