@@ -101,7 +101,7 @@ set showmatch               " Show matching brackets
 
 " wildmenu
 set wildmenu
-set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg-info/*,dist,deb_dist,pyshared
+set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg-info/*,dist,deb_dist,pyshared,.tox
 set wildcharm=<C-Z>
 source $VIMRUNTIME/menu.vim
 
@@ -331,6 +331,7 @@ let g:ctrlp_map = '<Nul>'
 let g:ctrlp_extensions = ['buffertag', 'line']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_max_height = 25
+let g:ctrlp_show_hidden = 1
 nmap <Leader>l <ESC>:CtrlPLine<CR>
 nmap <Leader>r <ESC>:CtrlPBufTagAll<CR>
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
