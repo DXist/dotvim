@@ -101,7 +101,7 @@ set showmatch               " Show matching brackets
 
 " wildmenu
 set wildmenu
-set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg-info/*,dist,deb_dist,pyshared,.tox
+set wildignore=*.o,.git,*.swp,*.swo,*~,*.pyc,build,*.egg,*.egg/*,*.egg-info/*,dist,deb_dist,pyshared,.tox
 set wildcharm=<C-Z>
 source $VIMRUNTIME/menu.vim
 
