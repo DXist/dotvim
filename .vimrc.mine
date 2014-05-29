@@ -39,6 +39,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'me-vlad/spellfiles.vim'
 	Bundle 'dbarsam/vim-bufkill'
 	Bundle 'SirVer/ultisnips'
+	Bundle 'honza/vim-snippets'
 	Bundle 'benatkin/vim-move-between-tabs'
 
 	filetype on                          " try to detect filetypes
@@ -413,9 +414,6 @@ nnoremap <leader>jf :YcmCompleter GoToDeclaration<CR>
 "tagbar
 map <Leader><space> :TagbarToggle<CR>
 "let g:tagbar_singleclick = 1
-" snipMate
-let g:snips_trigger_key = "<c-j>"
-let g:snips_trigger_key_backwards = "<c-k>"
 " delimitMate
 let g:delimitMate_nesting_quotes = ['"']
 au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
