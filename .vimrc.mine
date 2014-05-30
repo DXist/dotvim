@@ -121,7 +121,10 @@ endif
 set t_Co=16
 "let g:solarized_termcolors=256
 "Easy motion
+nmap s <Plug>(easymotion-s)
 let g:EasyMotion_do_shade = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
 
 "Подсвечиваем все что можно подсвечивать
 let python_highlight_all = 1
@@ -330,13 +333,12 @@ map <Leader>p oimport pprint; pprint.pprint(
 
 " Ctrlp
 let g:ctrlp_map = '<Nul>'
-let g:ctrlp_extensions = ['buffertag', 'line']
+let g:ctrlp_extensions = ['tag']
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_max_height = 25
 let g:ctrlp_show_hidden = 1
-nmap <Leader>l <ESC>:CtrlPLine<CR>
-nmap <Leader>r <ESC>:CtrlPBufTagAll<CR>
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
+nmap <silent> <Leader>r <ESC>:CtrlPTag<CR>
 
 " поиск файлов в workspace
 " if exists("workspace")
