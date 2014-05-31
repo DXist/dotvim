@@ -41,6 +41,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'SirVer/ultisnips'
 	Bundle 'honza/vim-snippets'
 	Bundle 'benatkin/vim-move-between-tabs'
+	Bundle 'fatih/vim-go'
 
 	filetype on                          " try to detect filetypes
 	filetype plugin indent on    " enable loading indent file for filetype
@@ -368,6 +369,11 @@ endif
 if exists("$VIRTUAL_ENV")
 	set tags^=$VIRTUAL_ENV/.tags
 endif
+
+if exists("$GOPATH")
+	set tags^=$GOPATH/.tags
+endif
+
 " переход по тегу в стиле tjump
 nmap g] g<C-]>
 nmap g} <c-W>g}

@@ -13,3 +13,4 @@ endfunction
 
 " call extend(projects, s:projects_from_path('~/workspace', ''))
 " call extend(projects, s:projects_from_path('~/envs', 'env_'))
+" call extend(projects, s:projects_from_path('~/goworkspace/src/github.com', 'go_'))
