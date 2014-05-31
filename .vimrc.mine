@@ -371,14 +371,9 @@ nmap g} <c-W>g}
 
 " fugitive, git команды
 map <Leader>gs <ESC>:Gstatus<CR>
-map <Leader>gsr <ESC>:Git stash  <bar> :Git svn rebase <bar> :Git stash pop<CR>
-map <Leader>gsd <ESC>:Git stash  <bar> :Git svn dcommit <bar> :Git stash pop<CR>
-map <Leader>gsp <ESC>:Git svn dcommit <bar> :Git push<CR>
 map <Leader>gd <ESC>:Gdiff<CR>
 map <Leader>gc <ESC>:Gcommit<CR>
 map <Leader>gca <ESC>:Gcommit -a<CR>
-map <Leader>gp <ESC>:Git push<CR>
-map <Leader>gk <ESC>:!gitk<CR>
 " Git fugitive menu
 noremap <Leader>g :emenu Git.<C-Z>
 menu Git.Status :Gstatus<CR>
