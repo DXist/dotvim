@@ -1,5 +1,6 @@
 all:
 	vim +BundleInstall! +qall
+	cd ./bundle/YouCompleteMe/ && ./install.sh
 
 update:
 	vim +BundleInstall +qall
