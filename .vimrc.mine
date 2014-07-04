@@ -372,11 +372,11 @@ nmap g} <c-W>g}
 
 " fugitive, git команды
 map <Leader>gs <ESC>:Gstatus<CR>
-map <Leader><Leader>gd <ESC>:Gdiff<CR>
-map <Leader><Leader>gc <ESC>:Gcommit<CR>
-map <Leader><Leader>gca <ESC>:Gcommit -a<CR>
+map <Leader>gd <ESC>:Gdiff<CR>
+map <Leader>gc <ESC>:Gcommit<CR>
+map <Leader>gca <ESC>:Gcommit -a<CR>
 " Git fugitive menu
-noremap <Leader><Leader>g :emenu Git.<C-Z>
+noremap <Leader>g :emenu Git.<C-Z>
 menu Git.Status :Gstatus<CR>
 menu Git.Diff :Gdiff<CR>
 menu Git.Commit :Gcommit %<CR>
