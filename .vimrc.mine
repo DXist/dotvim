@@ -21,6 +21,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'tpope/vim-repeat'
 	Bundle 'tpope/vim-commentary'
 	Bundle 'jmcantrell/vim-virtualenv'
+	Bundle 'hynek/vim-python-pep8-indent'
 	Bundle 'mileszs/ack.vim.git'
 	Bundle 'altercation/vim-colors-solarized'
 	Bundle 'itspriddle/vim-javascript-indent'
