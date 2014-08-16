@@ -201,7 +201,7 @@ nmap dgr :diffget /3<CR>:diffupdate<CR>
 
 " для различения уровня отступов
 set listchars=tab:\ \ ,trail:·,extends:⋯,precedes:⋯,nbsp:~
-"set list listchars=tab:»·,trail:·
+set list
 ""}}}
 
 " FOLDING - сворачивание {{{1
