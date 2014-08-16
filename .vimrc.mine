@@ -24,7 +24,7 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'hynek/vim-python-pep8-indent'
 	Bundle 'mileszs/ack.vim.git'
 	Bundle 'altercation/vim-colors-solarized'
-	Bundle 'itspriddle/vim-javascript-indent'
+	Bundle 'pangloss/vim-javascript'
 	Bundle 'scrooloose/syntastic'
 	Bundle 'bkad/CamelCaseMotion'
 	Bundle 'Lokaltog/vim-easymotion'
@@ -180,6 +180,7 @@ set shiftwidth=4
 set shiftround
 set softtabstop=-1 " the same value as shiftwidth
 set autoindent              " copy indent from previous line
+set smartindent
 " замена всех соответствий
 set gdefault
 
