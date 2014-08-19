@@ -325,7 +325,7 @@ map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
 map <Leader>mr <ESC>:python run_test()<CR>
 
 " Brakepoint
-map <Leader>n oimport ipdb; ipdb.set_trace()  # FIXME: brakepoint<ESC>
+map <Leader>n oimport pudb; pudb.set_trace()  # FIXME: brakepoint<ESC>
 map <Leader>p oimport pprint; pprint.pprint(
 
 
