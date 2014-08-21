@@ -53,7 +53,7 @@ if !exists('s:loaded_my_vimrc')
 	set exrc
 	set secure
 	" автообновление настроек
-	autocmd BufWritePost .vimrc.mine source ~/.vim/.vimrc.mine
+	autocmd BufWritePost .vimrc.global source ~/.vim/.vimrc.global
 	" автообновление проектов
 	autocmd BufWritePost projects.vim source ~/.vim/projects.vim
 	let s:loaded_my_vimrc = 1
@@ -277,10 +277,10 @@ map <F3> :set nowrap!<CR>
 map <F4> /[соех]<CR>
 " Перенос строки без разбития аргументов
 "map <F4> <ESC>80\|T,s<CR><ESC>
-" Обновление .vimrc.mine
-map <F5> <ESC>: source ~/.vim/.vimrc.mine<CR>
+" Обновление .vimrc.global
+map <F5> <ESC>: source ~/.vim/.vimrc.global<CR>
 " Fast editing of the .vimrc
-map <Leader>v :e! ~/.vim/.vimrc.mine<CR>
+map <Leader>v :e! ~/.vim/.vimrc.global<CR>
 map <Leader>vp :e ~/.vim/projects.vim<CR>
 "}}}
 
