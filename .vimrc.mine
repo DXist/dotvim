@@ -31,7 +31,6 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'Raimondi/delimitMate'
-	Bundle 'rainerborene/vim-pony'
 	Bundle 'Valloric/YouCompleteMe'
 	Bundle 'michaeljsmith/vim-indent-object'
 	Bundle 'xolox/vim-misc'
@@ -310,15 +309,6 @@ set switchbuf=usetab
 let g:session_autosave = "yes"
 " expand sym links
 let g:session_directory = resolve(expand("~/.vim/sessions"))
-
-" Django {{{
-map <Leader>msd <ESC>:Dmanage syncdb<CR>
-map <Leader>msm <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --auto"<CR>
-map <Leader>mcs <ESC>:exec ":Dmanage convert_to_south " . lighthouse#getdjangoapp()<CR>
-map <Leader>msme <ESC>:exec ":Dmanage schemamigration " . lighthouse#getdjangoapp() . " --empty"<CR>
-map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
-"map <Leader>mt <ESC>:exec ":Dmanage test " . lighthouse#getdjangoapp()<CR>
-"}}}
 
 "py-test-runner
 map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
