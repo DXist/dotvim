@@ -180,7 +180,6 @@ set shiftwidth=4
 set shiftround
 set softtabstop=-1 " the same value as shiftwidth
 set autoindent              " copy indent from previous line
-set smartindent
 " замена всех соответствий
 set gdefault
 
@@ -224,7 +223,8 @@ set infercase
 inoremap ^] ^X^]
 inoremap ^F ^X^F
 
-set completeopt=menuone,longest ",preview
+" longest option behaves wierd when common match is short
+set completeopt=menuone
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
