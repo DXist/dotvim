@@ -324,8 +324,9 @@ map <Leader>mm <ESC>:exec ":Dmanage migrate " . lighthouse#getdjangoapp()<CR>
 map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
 map <Leader>mr <ESC>:python run_test()<CR>
 
-" Brakepoint
-map <Leader>n oimport ipdb; ipdb.set_trace()  # FIXME: brakepoint<ESC>
+
+map <Leader>i oimport ipdb; ipdb.set_trace()  # FIXME: brakepoint<ESC>
+map <Leader>n :silent let @* = 'b ' . expand('%:p') . ':' . line('.') <bar> echo "Pdb breakpoint copied to selection buffer"<CR>
 map <Leader>p oimport pprint; pprint.pprint(
 
 
