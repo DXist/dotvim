@@ -307,6 +307,7 @@ set switchbuf=usetab
 " PLUGINS {{{2
 " Session.vim
 let g:session_autosave = "yes"
+let g:session_autosave_periodic = 5
 " expand sym links
 let g:session_directory = resolve(expand("~/.vim/sessions"))
 
