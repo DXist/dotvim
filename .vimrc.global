@@ -358,7 +358,7 @@ if exists("$VIRTUAL_ENV")
 endif
 
 if exists("$GOPATH")
-	set tags^=$GOPATH/.tags
+	let &tags .= ',' . split($GOPATH, ':')[-1] . '/.tags'
 endif
 
 " переход по тегу в стиле tjump
