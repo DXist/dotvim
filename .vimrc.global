@@ -364,8 +364,9 @@ endif
 " tjump-style tag move
 nmap g] g<C-]>
 nmap g} <c-W>g}
-nmap <c-g> <ESC>:tag<CR>
+nmap <Leader>y <ESC>:tag<CR>
 nmap <Leader>r <ESC>:tjump /
+nmap <Leader>rr <ESC>:vertical stjump /
 
 " fugitive, git commands
 map <Leader>gs <ESC>:Gstatus<CR>
