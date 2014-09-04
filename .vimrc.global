@@ -79,7 +79,8 @@ set showcmd
 
 " Enable mouse usage (all modes)
 set mouse=a
-" меняем заголовок окна на titlestring
+set ttymouse=xterm2
+" change window header to titlestring
 set title
 " nocursorline in insert mode
 set cursorline
@@ -119,10 +120,7 @@ let g:solarized_termtrans =1
 if exists("togglebg")
 	call togglebg#map("<F6>")
 endif
-" используем специальную палитру для solarized
-set t_Co=16
-"let g:solarized_termcolors=256
-"Подсвечиваем все что можно подсвечивать
+
 let python_highlight_all = 1
 " Highlight leading tabs
 match SpecialKey /^\t\+/
