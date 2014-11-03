@@ -38,7 +38,6 @@ if !exists('s:loaded_my_vimrc')
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'thinca/vim-template'
 	Bundle 'me-vlad/spellfiles.vim'
-	Bundle 'dbarsam/vim-bufkill'
 	Bundle 'SirVer/ultisnips'
 	Bundle 'honza/vim-snippets'
 	Bundle 'benatkin/vim-move-between-tabs'
@@ -414,6 +413,7 @@ autocmd FileType cpp nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<
 
 "Easy motion
 map s <Plug>(easymotion-s)
+map ы <Plug>(easymotion-s)
 map t <Plug>(easymotion-bd-tl)
 map f <Plug>(easymotion-bd-fl)
 
@@ -430,8 +430,6 @@ let g:delimitMate_nesting_quotes = ['"']
 au FileType html,htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
 "let g:delimitMate_smart_quotes = 0
 "let g:delimitMate_quotes = '"'
-" Bufkill
-let g:BufKillCreateMappings = 0
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsListSnippets = "<Leader>u"
