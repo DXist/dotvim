@@ -17,6 +17,7 @@ if !exists('s:loaded_my_vimrc')
 	" syntax files
 	Bundle 'tpope/vim-git'
 	Bundle 'gregsexton/gitv'
+	Bundle 'tpope/vim-dispatch'
 	Bundle 'tpope/vim-surround'
 	Bundle 'tpope/vim-repeat'
 	Bundle 'tpope/vim-commentary'
@@ -334,6 +335,9 @@ let g:surround_{char2nr("s")} = "{% static \"\r\" %}"
 
 " Ack, поиск текста
 nmap <silent> <Leader>a <ESC>:call lighthouse#ack_grep()<CR>
+
+let g:ack_use_dispatch = 1
+
 if exists("workspace")
 	" поиск текста в workspace
 	execute "nmap <Leader><Leader>a <ESC>:Ack!  ".workspace."<Home><right><right><right><right><right>"
