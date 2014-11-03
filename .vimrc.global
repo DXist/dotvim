@@ -207,11 +207,6 @@ if has('folding')
 	set fml=15
 	set foldopen+=insert
 endif
-" Don't screw up folds when inserting text that might affect them, until
-" leaving insert mode. Foldmethod is local to the window.  Protect against
-" screwing up folding when switching between windows.
-"autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-"autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 "}}}
 " COMPLETION {{{1
 " учитываем case при дополнении
@@ -328,11 +323,6 @@ let g:ctrlp_show_hidden = 1
 nmap <silent> <Leader>t <ESC>:call lighthouse#filesearch()<CR>
 " nmap <silent> <Leader>r <ESC>:CtrlPTag<CR>
 
-" поиск файлов в workspace
-" if exists("workspace")
-" 	execute "nmap <Leader><Leader>t <ESC>:".lighthouse_search_cmd."  ".workspace."<CR>"
-" endif
-
 " vim-surround {{{
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1 %}\r{% endblock %}"
 let g:surround_{char2nr("i")} = "{% if\1 \r..*\r &\1 %}\r{% endif %}"
@@ -420,6 +410,10 @@ map f <Plug>(easymotion-bd-fl)
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
+
+" OS X hacks
+" copy selection to copy buffer
+command! -range Pbcopy silent '<,'>w !reattach-to-user-namespace pbcopy
 
 " VARIOUS {{{2
 "tagbar
