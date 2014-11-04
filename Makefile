@@ -6,6 +6,10 @@ all: install update
 update:
 	vim +NeoBundleInstall! +qall
 
+.PHONY: fastupdate
+fastupdate:
+	vim +NeoBundleInstall +qall
+
 .PHONY: install
 install:
 	git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim || ( cd ~/.vim/bundle/neobundle.vim && git pull )
