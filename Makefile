@@ -1,9 +1,11 @@
-all:
-	vim +BundleInstall! +qall
-	cd ./bundle/YouCompleteMe/ && ./install.sh
+.PHONY: all
 
+all: install update
+
+.PHONY: update
 update:
-	vim +BundleInstall +qall
+	vim +NeoBundleInstall! +qall
 
+.PHONY: install
 install:
-	git clone https://github.com/gmarik/vundle.git bundle/vundle
+	git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim || ( cd ~/.vim/bundle/neobundle.vim && git pull )
