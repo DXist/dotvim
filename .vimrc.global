@@ -51,7 +51,7 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundle 'Lokaltog/vim-easymotion'
 	NeoBundle 'Raimondi/delimitMate'
 	NeoBundle 'Valloric/YouCompleteMe', {
-		\ 'build': {'unix': './install.sh'}}
+		\ 'build': {'unix': 'sh -c "git submodule update --init --recursive && ./install.sh"'}}
 	NeoBundle 'michaeljsmith/vim-indent-object'
 	NeoBundle 'xolox/vim-misc'
 	NeoBundle 'xolox/vim-session'
@@ -377,6 +377,8 @@ endif
 
 nnoremap    [unite]   <Nop>
 nmap    <leader>t [unite]
+nnoremap <silent> <leader>r  :<C-u>Unite
+		\ -buffer-name=tags tag<CR>
 nnoremap <silent> <leader>f  :<C-u>Unite
 		\ -buffer-name=files buffer file_rec/async file/new<CR>
 
