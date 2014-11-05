@@ -31,6 +31,7 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundle 'Shougo/unite.vim'
 	NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
 	NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':'tag'}}
+	NeoBundleLazy 'junkblocker/unite-codesearch', {'autoload':{'unite_sources':'codesearch'}}
 	NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
 	NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
 	NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}

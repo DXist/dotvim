@@ -1,14 +1,13 @@
-.PHONY: all
+.PHONY: fastupdate
+fastupdate:
+	vim +NeoBundleInstall +qall
 
+.PHONY: all
 all: install update
 
 .PHONY: update
 update:
 	vim +NeoBundleInstall! +qall
-
-.PHONY: fastupdate
-fastupdate:
-	vim +NeoBundleInstall +qall
 
 .PHONY: install
 install:
