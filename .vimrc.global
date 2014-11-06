@@ -196,7 +196,12 @@ function! RemoveTrailingWhitespace()
 		call cursor(b:curline, b:curcol)
 	endif
 endfunction
-autocmd BufWritePre * call RemoveTrailingWhitespace()
+
+augroup group_general
+	autocmd!
+	autocmd BufWritePre * call RemoveTrailingWhitespace()
+augroup END
+
 " netrw
 let g:netrw_localcopycmd = '/bin/cp'
 "}}}
@@ -269,11 +274,44 @@ inoremap ^F ^X^F
 set completeopt=menuone
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup group_css
+	au!
+	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+augroup END
+
+" use htmldjango instead of html
+augroup group_htmldjango
+	au!
+	autocmd FileType html set filetype=htmldjango
+augroup END
+
+augroup group_html
+	au!
+	autocmd FileType html,htmldjango,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+augroup END
+
+augroup group_javascript
+	au!
+	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+augroup END
+
+augroup group_python
+	au!
+	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+	autocmd FileType python nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<CR>
+augroup END
+
+augroup group_xml
+	au!
+	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
+
+augroup group_c
+	au!
+	autocmd FileType c,cpp nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+	autocmd FileType c,cpp nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<CR>
+augroup END
+
 
 "YouCompleteMe conflicts with delimitMate]
 let g:ycm_key_list_previous_completion = ['<Up>']
@@ -325,9 +363,6 @@ map <F5> <ESC>: source ~/.vim/.vimrc.global<CR>
 map <Leader>v :e! ~/.vim/.vimrc.global<CR>
 map <Leader>vp :e ~/.vim/projects.vim<CR>
 "}}}
-
-" use htmldjango instead of html
-autocmd FileType html set filetype=htmldjango
 
 " WINDOWS {{{2
 " Window movement
@@ -398,7 +433,11 @@ nnoremap <silent> [unite]ma
 nnoremap  [unite]s  :<C-u>Unite source<CR>
 
 
-autocmd FileType unite call s:unite_my_settings()
+augroup group_unite
+	au!
+	autocmd FileType unite call s:unite_my_settings()
+augroup END
+
 function! s:unite_my_settings()
 	" Overwrite settings.
 
@@ -520,15 +559,6 @@ let g:syntastic_python_pylama_args='--linters pylint,pep8,pep257,mccabe --option
 let g:syntastic_python_flake8_args='--max-complexity=10'
 let g:syntastic_ignore_files=['\m\migrations']
 
-"YcmComplteter
-
-autocmd FileType python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-autocmd FileType c nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-autocmd FileType cpp nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-autocmd FileType python nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<CR>
-autocmd FileType c nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<CR>
-autocmd FileType cpp nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<CR>
 
 "Easy motion
 map s <Plug>(easymotion-s)
