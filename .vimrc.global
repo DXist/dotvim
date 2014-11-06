@@ -78,11 +78,13 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundleLazy 'othree/html5.vim', {
 		\ 'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
 
-	NeoBundleLazy "wavded/vim-stylus", {
+	NeoBundleLazy 'wavded/vim-stylus', {
 		\ 'autoload': {'filetypes': ['styl']}}
 
-	NeoBundleLazy "fatih/vim-go", {
+	NeoBundleLazy 'fatih/vim-go', {
 		\ 'autoload': {'filetypes': ['go']}}
+
+	NeoBundle 'szw/vim-ctrlspace'
 
 	call neobundle#end()
 
