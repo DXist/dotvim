@@ -452,10 +452,13 @@ function! s:unite_my_settings()
 	" Overwrite settings.
 
 	imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
-	imap <silent><buffer><expr> <C-x> unite#do_action('split')
 	imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
 	imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
 	imap <silent><buffer><expr> <C-s> unite#do_action('split')
+	imap <silent><buffer><expr> <C-s> unite#do_action('split')
+	imap <silent><buffer> <tab> <c-x><c-f>
+	iunmap <silent><buffer> <c-n>
+	iunmap <silent><buffer> <c-p>
 
 	imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
 	nmap <buffer> x     <Plug>(unite_quick_match_choose_action)
