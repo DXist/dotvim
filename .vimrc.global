@@ -388,8 +388,9 @@ nnoremap    [unite]   <Nop>
 nmap    <leader>t [unite]
 nnoremap <silent> <leader>d  :<C-u>Unite
 		\ -buffer-name=codesearch codesearch<CR>
-nnoremap <silent> <leader>f  :<C-u>Unite
-		\ -buffer-name=files buffer file_rec/async file/new<CR>
+" nnoremap <silent> <leader>f  :<C-u>Unite
+" 		\ -buffer-name=files buffer file_rec/async file/new<CR>
+nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
 
 nnoremap <silent> <leader>a  :<C-u>Unite
 		\ -buffer-name=grep grep:.<CR>
