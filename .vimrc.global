@@ -313,6 +313,7 @@ nmap <silent> <leader>h :silent :nohlsearch<CR>
 	cnoremap <C-F>      <Right>
 	cnoremap <Esc>b <S-Left>
 	cnoremap <Esc>f <S-Right>
+	cnoremap <Esc>d <S-Right><C-W>
 
 " }}}
 " Paste mode
