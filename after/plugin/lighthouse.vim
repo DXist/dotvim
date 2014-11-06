@@ -1,5 +1,4 @@
-" Lighthouse plugin is going to help to work with several projects in the same
-" time
+" Lightning fast switch between projects
 " Author: Rinat Shigapov <rinatshigapov@gmail.com>
 "
 if exists('g:loaded_lighthouse')
@@ -9,10 +8,6 @@ let g:loaded_lighthouse = 1
 
 if !exists("g:projects")
 	let g:projects = []
-endif
-
-if !exists("g:lighthouse_search_cmd")
-	let g:lighthouse_search_cmd = "CtrlP"
 endif
 
 function! lighthouse#statusline()
@@ -66,7 +61,7 @@ function! lighthouse#filesearch(...)
 	else
 		let l:path = s:ProjectPath()
 	endif
-	exec ":" . g:lighthouse_search_cmd . " " . l:path
+	exec ":" . "Unite -buffer-name=files buffer file_rec/async:" . l:path . " file/new"
 endfunction
 
 function! lighthouse#ack_grep(...)
@@ -112,7 +107,7 @@ function! s:Completion(ArgLead, CmdLine, CursorPos)
 			call add(l:projects, prj[0])
 		endif
 	endfor
-	return sort(l:projects)
+	return l:projects
 endfunction
 
 function! s:SetCurrentProject(project)
