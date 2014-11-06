@@ -347,7 +347,10 @@ nmap <silent> <leader>h :silent :nohlsearch<CR>
 	" Allow command line editing like emacs
 	cnoremap <C-A>      <Home>
 	cnoremap <C-B>      <Left>
+	cnoremap <C-D>      <Del>
 	cnoremap <C-F>      <Right>
+	cnoremap <Esc>b <S-Left>
+	cnoremap <Esc>f <S-Right>
 
 " }}}
 " Paste mode
