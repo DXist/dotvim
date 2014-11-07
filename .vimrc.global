@@ -55,8 +55,8 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundle 'Valloric/YouCompleteMe', {
 		\ 'build': {'unix': 'sh -c "git submodule update --init --recursive && ./install.sh"'}}
 	NeoBundle 'michaeljsmith/vim-indent-object'
-	NeoBundle 'xolox/vim-misc'
-	NeoBundle 'xolox/vim-session'
+	" NeoBundle 'xolox/vim-misc'
+	" NeoBundle 'xolox/vim-session'
 	NeoBundle 'thinca/vim-template'
 	NeoBundle 'me-vlad/spellfiles.vim'
 	NeoBundle 'SirVer/ultisnips'
@@ -325,9 +325,6 @@ if filereadable(expand('~/.vim/projects.vim'))
 endif
 " }}}
 
-let g:ctrlspace_load_last_workspace_on_start = 1
-let g:ctrlspace_save_workspace_on_exit = 1
-
 " MAPPINGS {{{1
 " GENERAL {{{2
 let mapleader = ","
@@ -380,8 +377,6 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Switch to alternate buffer
-nmap <space> <c-^>
 set switchbuf=usetab
 "}}}
 
@@ -491,25 +486,12 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " call unite#custom#source('buffer,file,file_rec',
 " \ 'sorters', 'sorter_rank')
 call unite#filters#sorter_default#use(['sorter_rank'])
-let project_open = {}
-function! project_open.func(candidate)
-	call unite#take_action('open', a:candidate)
 
-	let directory = unite#helper#get_candidate_directory(a:candidate)
-	if !isdirectory(directory)
-		echo directory . 'is not a directory'
-		return
-	endif
-
-	let directory = unite#util#path2project_directory(directory)
-
-	if isdirectory(directory)
-		execute g:unite_kind_cdable_lcd_command fnameescape(directory)
-	endif
-endfunction
-
-call unite#custom#action('file,file/async,file_rec/file_rec/async', 'projectopen', project_open)
-unlet project_open
+" ctrlspace
+let g:ctrlspace_load_last_workspace_on_start = 1
+let g:ctrlspace_save_workspace_on_exit = 1
+let g:ctrlspace_save_workspace_on_switch = 1
+nmap <space> :<c-u>CtrlSpace<CR>
 
 " vim-surround {{{
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1 %}\r{% endblock %}"
