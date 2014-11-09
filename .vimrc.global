@@ -55,8 +55,8 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundle 'Valloric/YouCompleteMe', {
 		\ 'build': {'unix': 'sh -c "git submodule update --init --recursive && ./install.sh"'}}
 	NeoBundle 'michaeljsmith/vim-indent-object'
-	" NeoBundle 'xolox/vim-misc'
-	" NeoBundle 'xolox/vim-session'
+	NeoBundle 'xolox/vim-misc'
+	NeoBundle 'xolox/vim-session'
 	NeoBundle 'thinca/vim-template'
 	NeoBundle 'me-vlad/spellfiles.vim'
 	NeoBundle 'SirVer/ultisnips'
@@ -84,7 +84,7 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundleLazy 'fatih/vim-go', {
 		\ 'autoload': {'filetypes': ['go']}}
 
-	NeoBundle 'szw/vim-ctrlspace'
+	" NeoBundle 'szw/vim-ctrlspace'
 
 	call neobundle#end()
 
@@ -419,19 +419,15 @@ endif
 
 nnoremap    [unite]   <Nop>
 nmap    <leader>t [unite]
-nnoremap <silent> <leader>d  :<C-u>Unite
-		\ -buffer-name=codesearch codesearch<CR>
-" nnoremap <silent> <leader>f  :<C-u>Unite
-" 		\ -buffer-name=files buffer file_rec/async file/new<CR>
-nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
+nnoremap <silent> <leader>d  :<C-u>Unite codesearch<CR>
+nnoremap <silent> <leader>f  :<C-u>Unite buffer file_rec/async file/new<CR>
+nnoremap <silent> <leader>r  :<C-u>Unite tag<CR>
+" nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
 
-nnoremap <silent> <leader>a  :<C-u>Unite
-		\ -buffer-name=grep grep:.<CR>
+nnoremap <silent> <leader>a  :<C-u>Unite grep:.<CR>
 
-nnoremap <silent> [unite]b  :<C-u>Unite
-		\ -buffer-name=bookmarks bookmark:default<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite
-		\ -buffer-name=register register<CR>
+nnoremap <silent> [unite]b  :<C-u>Unite bookmark:default<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite register<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]ma
 		\ :<C-u>Unite mapping<CR>
@@ -482,16 +478,13 @@ call unite#custom#source('file_rec/async','sorters','sorter_selecta')
 call unite#custom#source('file,file/new,file_rec,file_rec/async',
 \ 'matchers', ['matcher_hide_hidden_files', 'converter_relative_word', 'matcher_fuzzy'])
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" call unite#custom#source('buffer,file,file_rec',
-" \ 'sorters', 'sorter_rank')
 call unite#filters#sorter_default#use(['sorter_rank'])
 
 " ctrlspace
 let g:ctrlspace_load_last_workspace_on_start = 1
 let g:ctrlspace_save_workspace_on_exit = 1
 let g:ctrlspace_save_workspace_on_switch = 1
-nmap <space> :<c-u>CtrlSpace<CR>
+" nmap <space> :<c-u>CtrlSpace<CR>
 
 " vim-surround {{{
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1 %}\r{% endblock %}"
