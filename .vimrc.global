@@ -78,11 +78,13 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundleLazy 'othree/html5.vim', {
 		\ 'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
 
-	NeoBundleLazy "wavded/vim-stylus", {
+	NeoBundleLazy 'wavded/vim-stylus', {
 		\ 'autoload': {'filetypes': ['styl']}}
 
-	NeoBundleLazy "fatih/vim-go", {
+	NeoBundleLazy 'fatih/vim-go', {
 		\ 'autoload': {'filetypes': ['go']}}
+
+	" NeoBundle 'szw/vim-ctrlspace'
 
 	call neobundle#end()
 
@@ -375,8 +377,6 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Switch to alternate buffer
-nmap <space> <c-^>
 set switchbuf=usetab
 "}}}
 
@@ -419,19 +419,15 @@ endif
 
 nnoremap    [unite]   <Nop>
 nmap    <leader>t [unite]
-nnoremap <silent> <leader>d  :<C-u>Unite
-		\ -buffer-name=codesearch codesearch<CR>
+nnoremap <silent> <leader>d  :<C-u>Unite codesearch<CR>
+nnoremap <silent> <leader>f  :<C-u>Unite buffer file_rec/async file/new<CR>
+nnoremap <silent> <leader>r  :<C-u>Unite tag<CR>
+" nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
 
-nnoremap <silent> <leader>f  :<C-u>Unite
-		\ -buffer-name=files buffer file_rec/async file/new<CR>
+nnoremap <silent> <leader>a  :<C-u>Unite grep:.<CR>
 
-nnoremap <silent> <leader>a  :<C-u>Unite
-		\ -buffer-name=grep grep:.<CR>
-
-nnoremap <silent> [unite]b  :<C-u>Unite
-		\ -buffer-name=bookmarks bookmark:default<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite
-		\ -buffer-name=register register<CR>
+nnoremap <silent> [unite]b  :<C-u>Unite bookmark:default<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite register<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]ma
 		\ :<C-u>Unite mapping<CR>
@@ -447,10 +443,13 @@ function! s:unite_my_settings()
 	" Overwrite settings.
 
 	imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
-	imap <silent><buffer><expr> <C-x> unite#do_action('split')
 	imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
 	imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
 	imap <silent><buffer><expr> <C-s> unite#do_action('split')
+	imap <silent><buffer><expr> <C-s> unite#do_action('split')
+	imap <silent><buffer> <tab> <c-x><c-f>
+	iunmap <silent><buffer> <c-n>
+	iunmap <silent><buffer> <c-p>
 
 	imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
 	nmap <buffer> x     <Plug>(unite_quick_match_choose_action)
@@ -471,6 +470,7 @@ endfunction
 call unite#custom#profile('default', 'context', {
 \   'prompt': '» ',
 \   'start_insert': 1,
+\   'update_time': 200,
 \   'direction': 'botright',
 \ })
 
@@ -479,29 +479,13 @@ call unite#custom#source('file_rec/async','sorters','sorter_selecta')
 call unite#custom#source('file,file/new,file_rec,file_rec/async',
 \ 'matchers', ['matcher_hide_hidden_files', 'converter_relative_word', 'matcher_fuzzy'])
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" call unite#custom#source('buffer,file,file_rec',
-" \ 'sorters', 'sorter_rank')
 call unite#filters#sorter_default#use(['sorter_rank'])
-let project_open = {}
-function! project_open.func(candidate)
-	call unite#take_action('open', a:candidate)
 
-	let directory = unite#helper#get_candidate_directory(a:candidate)
-	if !isdirectory(directory)
-		echo directory . 'is not a directory'
-		return
-	endif
-
-	let directory = unite#util#path2project_directory(directory)
-
-	if isdirectory(directory)
-		execute g:unite_kind_cdable_lcd_command fnameescape(directory)
-	endif
-endfunction
-
-call unite#custom#action('file,file/async,file_rec/file_rec/async', 'projectopen', project_open)
-unlet project_open
+" ctrlspace
+let g:ctrlspace_load_last_workspace_on_start = 1
+let g:ctrlspace_save_workspace_on_exit = 1
+let g:ctrlspace_save_workspace_on_switch = 1
+" nmap <space> :<c-u>CtrlSpace<CR>
 
 " vim-surround {{{
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1 %}\r{% endblock %}"
