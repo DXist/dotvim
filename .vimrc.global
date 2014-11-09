@@ -470,6 +470,7 @@ endfunction
 call unite#custom#profile('default', 'context', {
 \   'prompt': '» ',
 \   'start_insert': 1,
+\   'update_time': 200,
 \   'direction': 'botright',
 \ })
 

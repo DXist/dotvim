@@ -30,7 +30,7 @@ function! lighthouse#filesearch(...)
 	else
 		let l:path = s:ProjectPath()
 	endif
-	exec ":" . "Unite -buffer-name=files buffer file_rec/async:" . l:path . " file/new"
+	exec ":" . "Unite buffer file_rec/async:" . l:path . " file/new"
 endfunction
 
 function! lighthouse#grep(...)
@@ -40,16 +40,7 @@ function! lighthouse#grep(...)
 	else
 		let l:path = s:ProjectPath()
 	endif
-	let l:pattern = input("Ack: ")
-	if !empty(l:pattern)
-		let l:cmd = ":Ack! " . l:pattern
-		if empty(l:path)
-			let l:cmd = l:cmd . " " . l:path
-		endif
-		exec l:cmd
-	else
-		echo
-	endif
+	exec ":" . "Unite grep:" . l:path
 endfunction
 
 function! lighthouse#closeproject(name)
