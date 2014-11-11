@@ -301,6 +301,7 @@ augroup group_python
 	au!
 	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 	autocmd FileType python nnoremap <buffer> <leader>jf :YcmCompleter GoToDeclaration<CR>
+	autocmd FileType python nnoremap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 augroup END
 
 augroup group_xml
