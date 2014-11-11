@@ -11,4 +11,4 @@ update:
 
 .PHONY: install
 install:
-	git clone git@github.com:Shougo/neobundle.vim.git bundle/neobundle.vim || ( cd bundle/neobundle.vim && git pull )
+	git clone https://github.com/Shougo/neobundle.vim bundle/neobundle.vim || ( cd bundle/neobundle.vim && git pull )
