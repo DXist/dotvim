@@ -7,7 +7,7 @@ if exists("*unite#custom#profile")
 	\   'direction': 'botright',
 	\ })
 
-	call unite#custom#source('file_rec/async','sorters','sorter_selecta')
+	call unite#custom#source('file_rec/async','sorters','sorter_rank')
 
 	call unite#custom#source('file,file/new,file_rec,file_rec/async',
 	\ 'matchers', ['matcher_hide_hidden_files', 'converter_relative_word', 'matcher_fuzzy'])

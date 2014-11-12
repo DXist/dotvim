@@ -27,20 +27,22 @@ function! lighthouse#filesearch(...)
 	if exists("a:1")
 		let l:path = s:ProjectPath(a:1)
 		call s:SetCurrentProject(a:1)
-	else
-		let l:path = s:ProjectPath()
+		call s:SwitchPath(l:path)
+	" else
+	" 	let l:path = s:ProjectPath()
 	endif
-	exec ":" . "Unite buffer file_rec/async:" . l:path . " file/new"
+	exec ":" . "CtrlP"
 endfunction
 
 function! lighthouse#grep(...)
 	if exists("a:1")
 		let l:path = s:ProjectPath(a:1)
 		call s:SetCurrentProject(a:1)
-	else
-		let l:path = s:ProjectPath()
+		call s:SwitchPath(l:path)
+	" else
+	" 	let l:path = s:ProjectPath()
 	endif
-	exec ":" . "Unite grep:" . l:path
+	exec ":" . "Unite grep:."
 endfunction
 
 function! lighthouse#closeproject(name)
@@ -69,6 +71,7 @@ endfunction
 function! s:SetCurrentProject(project)
 	if !empty(a:project)
 		let b:current_project = a:project
+		exec "lcd"
 	else
 		if exists("b:current_project")
 			unlet b:current_project
