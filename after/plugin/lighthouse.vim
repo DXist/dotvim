@@ -24,25 +24,25 @@ endfunction
 
 
 function! lighthouse#filesearch(...)
-	if exists("a:1")
-		let l:path = s:ProjectPath(a:1)
+	if exists("a:1") && a:1 != ''
 		call s:SetCurrentProject(a:1)
+		let l:path = s:ProjectPath(a:1)
 		call s:SwitchPath(l:path)
-	" else
-	" 	let l:path = s:ProjectPath()
+		exec ":" . "CtrlP"
+	else
+		echo 'Filesearch is skipped'
 	endif
-	exec ":" . "CtrlP"
 endfunction
 
 function! lighthouse#grep(...)
-	if exists("a:1")
-		let l:path = s:ProjectPath(a:1)
+	if exists("a:1") && a:1 != ''
 		call s:SetCurrentProject(a:1)
+		let l:path = s:ProjectPath(a:1)
 		call s:SwitchPath(l:path)
-	" else
-	" 	let l:path = s:ProjectPath()
-	endif
 	exec ":" . "Unite grep:."
+	else
+		echo 'Grep is skipped'
+	endif
 endfunction
 
 function! lighthouse#closeproject(name)
@@ -71,7 +71,6 @@ endfunction
 function! s:SetCurrentProject(project)
 	if !empty(a:project)
 		let b:current_project = a:project
-		exec "lcd"
 	else
 		if exists("b:current_project")
 			unlet b:current_project
