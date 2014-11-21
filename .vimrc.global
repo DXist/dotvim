@@ -388,6 +388,8 @@ let g:session_autosave = "yes"
 let g:session_autosave_periodic = 5
 " expand sym links
 let g:session_directory = resolve(expand("~/.vim/sessions"))
+let g:session_lock_directory = "/tmp"
+nmap <space> :<c-u>OpenSession<CR>
 
 "py-test-runner
 map <Leader>mt <ESC>:python RunUnitTestsUnderCursor()<CR>
