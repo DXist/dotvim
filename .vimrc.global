@@ -430,7 +430,6 @@ nnoremap <silent> <leader>d  :<C-u>Unite codesearch<CR>
 " nnoremap <silent> <leader>f  :<C-u>Unite buffer file_rec/async file/new<CR>
 nnoremap <silent> <leader>r  :<C-u>Unite tag<CR>
 " nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
-nnoremap <silent> <leader>f  :<C-u>CtrlP<CR>
 
 nnoremap <silent> <leader>a  :<C-u>Unite grep:.<CR>
 
@@ -474,6 +473,8 @@ function! s:unite_my_settings()
 			\ unite#smart_map('l', unite#do_action('default'))
 
 endfunction
+
+nnoremap <silent> <leader>f  :<C-u>CtrlPMixed<CR>
 
 " Ctrlp
 let g:ctrlp_map = '<Nul>'
