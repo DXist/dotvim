@@ -85,6 +85,9 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundleLazy 'fatih/vim-go', {
 		\ 'autoload': {'filetypes': ['go']}}
 
+	NeoBundleLazy 'chase/vim-ansible-yaml', {
+		\ 'autoload': {'filetypes': ['yaml']}}
+
 	" NeoBundle 'szw/vim-ctrlspace'
 
 	call neobundle#end()
