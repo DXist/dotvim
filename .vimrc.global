@@ -425,13 +425,13 @@ elseif executable('ack')
 endif
 
 nnoremap    [unite]   <Nop>
-nmap    <leader>t [unite]
-nnoremap <silent> <leader>d  :<C-u>Unite codesearch -resume<CR>
+nnoremap <silent> <leader>d  :<C-u>Unite -resume codesearch<CR>
 " nnoremap <silent> <leader>f  :<C-u>Unite buffer file_rec/async file/new<CR>
-nnoremap <silent> <leader>r  :<C-u>Unite tag -resume<CR>
+nnoremap <silent> <leader>r  :<C-u>UniteResume<CR>
+nnoremap <silent> <leader>t  :<C-u>Unite -resume tag<CR>
 " nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
 
-nnoremap <silent> <leader>a  :<C-u>Unite grep:. -resume<CR>
+nnoremap <silent> <leader>a  :<C-u>Unite -resume grep:.<CR>
 
 nnoremap <silent> [unite]b  :<C-u>Unite bookmark:default<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite register<CR>

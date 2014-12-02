@@ -39,7 +39,7 @@ function! lighthouse#grep(...)
 		call s:SetCurrentProject(a:1)
 		let l:path = s:ProjectPath(a:1)
 		call s:SwitchPath(l:path)
-	exec ":" . "Unite grep:. -resume"
+	exec ":" . "Unite -resume grep:."
 	else
 		echo 'Grep is skipped'
 	endif
