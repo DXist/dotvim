@@ -57,7 +57,7 @@ if !exists('s:loaded_my_vimrc')
 		\ 'build': {'unix': 'sh -c "git submodule update --init --recursive && ./install.sh"'}}
 	NeoBundle 'michaeljsmith/vim-indent-object'
 	NeoBundle 'xolox/vim-misc'
-	NeoBundle 'xolox/vim-session'
+	" NeoBundle 'xolox/vim-session'
 	NeoBundle 'thinca/vim-template'
 	NeoBundle 'me-vlad/spellfiles.vim'
 	NeoBundle 'SirVer/ultisnips'
@@ -88,7 +88,7 @@ if !exists('s:loaded_my_vimrc')
 	NeoBundleLazy 'chase/vim-ansible-yaml', {
 		\ 'autoload': {'filetypes': ['yaml']}}
 
-	" NeoBundle 'szw/vim-ctrlspace'
+	NeoBundle 'szw/vim-ctrlspace'
 
 	call neobundle#end()
 
@@ -429,7 +429,6 @@ nnoremap <silent> <leader>d  :<C-u>Unite -resume codesearch<CR>
 " nnoremap <silent> <leader>f  :<C-u>Unite buffer file_rec/async file/new<CR>
 nnoremap <silent> <leader>r  :<C-u>UniteResume<CR>
 nnoremap <silent> <leader>t  :<C-u>Unite -resume tag<CR>
-" nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
 
 nnoremap <silent> <leader>a  :<C-u>Unite grep:.<CR>
 
@@ -474,7 +473,7 @@ function! s:unite_my_settings()
 
 endfunction
 
-nnoremap <silent> <leader>f  :<C-u>CtrlPMixed<CR>
+" nnoremap <silent> <leader>f  :<C-u>CtrlPMixed<CR>
 
 " Ctrlp
 let g:ctrlp_map = '<Nul>'
@@ -487,7 +486,9 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlspace_load_last_workspace_on_start = 1
 let g:ctrlspace_save_workspace_on_exit = 1
 let g:ctrlspace_save_workspace_on_switch = 1
-" nmap <space> :<c-u>CtrlSpace<CR>
+nmap <space> :<c-u>CtrlSpace<CR>
+nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
+nnoremap <leader><space> :<c-u>CtrlSpace b<CR>
 
 " vim-surround {{{
 let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1 %}\r{% endblock %}"
@@ -498,13 +499,13 @@ let g:surround_{char2nr("f")} = "{% for\1 \r..*\r &\1 %}\r{% endfor %}"
 let g:surround_{char2nr("s")} = "{% static \"\r\" %}"
 " }}}
 
-" CTAGS
-if exists("$VIRTUAL_ENV")
-	set tags^=$VIRTUAL_ENV/.tags
+" ctags
+if exists("$virtual_env")
+	set tags^=$virtual_env/.tags
 endif
 
-if exists("$GOPATH")
-	let &tags .= ',' . split($GOPATH, ':')[-1] . '/.tags'
+if exists("$gopath")
+	let &tags .= ',' . split($gopath, ':')[-1] . '/.tags'
 endif
 
 " tjump-style tag move
@@ -567,7 +568,7 @@ command! -range Pbcopy silent '<,'>w !reattach-to-user-namespace pbcopy
 
 " VARIOUS {{{2
 "tagbar
-map <Leader><space> :TagbarToggle<CR>
+map <LocalLeader><space> :TagbarToggle<CR>
 "let g:tagbar_singleclick = 1
 " delimitMate
 let g:delimitMate_nesting_quotes = ['"']

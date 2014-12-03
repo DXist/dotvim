@@ -160,14 +160,14 @@ command! -nargs=? -complete=customlist,s:Completion LightHouseClose :call lighth
 command! LightHouseArrange :call s:ArrangeByProjects()
 
 
-if !hasmapto(':LightHouseSearch<SPACE>')
-	silent! nmap <unique> <Leader>ls :LightHouseSearch<SPACE>
-endif
+" if !hasmapto(':LightHouseSearch<SPACE>')
+" 	silent! nmap <unique> <Leader>ls :LightHouseSearch<SPACE>
+" endif
 
-if !hasmapto(':LightHouseGrep<SPACE>')
-	silent! nmap <unique> <Leader>lg :LightHouseGrep<SPACE>
-endif
+" if !hasmapto(':LightHouseGrep<SPACE>')
+" 	silent! nmap <unique> <Leader>lg :LightHouseGrep<SPACE>
+" endif
 
-if !hasmapto(':LightHouseClose<SPACE>')
-	silent! nmap <unique> <Leader>lc :LightHouseClose<SPACE>
-endif
+" if !hasmapto(':LightHouseClose<SPACE>')
+" 	silent! nmap <unique> <Leader>lc :LightHouseClose<SPACE>
+" endif
