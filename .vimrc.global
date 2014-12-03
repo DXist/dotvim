@@ -431,7 +431,7 @@ nnoremap <silent> <leader>r  :<C-u>UniteResume<CR>
 nnoremap <silent> <leader>t  :<C-u>Unite -resume tag<CR>
 " nnoremap <silent> <leader>f  :<C-u>CtrlSpace O<CR>
 
-nnoremap <silent> <leader>a  :<C-u>Unite -resume grep:.<CR>
+nnoremap <silent> <leader>a  :<C-u>Unite grep:.<CR>
 
 nnoremap <silent> [unite]b  :<C-u>Unite bookmark:default<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite register<CR>
