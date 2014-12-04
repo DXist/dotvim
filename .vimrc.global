@@ -410,6 +410,7 @@ map <Leader>p oimport pprint; pprint.pprint(
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_menu_menus = {}
 let g:unite_enable_short_source_mes = 0
+let g:unite_source_codesearch_command = 'csearch -indexpath .csearchindex'
 let g:unite_source_codesearch_ignore_case = 1
 
 if executable('ag')
