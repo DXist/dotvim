@@ -89,6 +89,7 @@ if !exists('s:loaded_my_vimrc')
 		\ 'autoload': {'filetypes': ['yaml']}}
 
 	NeoBundle 'szw/vim-ctrlspace'
+	NeoBundle 'terryma/vim-multiple-cursors'
 
 	call neobundle#end()
 
